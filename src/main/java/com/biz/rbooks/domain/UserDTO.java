@@ -16,9 +16,13 @@ import lombok.ToString;
 
 public class UserDTO {
 
+	// 사용자 id
 	private String m_id;//	varchar2(20)
+	// 사용자 password
 	private String m_password;//	nvarchar2(125)
+	// 접속일자
 	private String m_login_date;//	nvarchar2(10)
+	// 기타
 	private String m_rem;//	nvarchar2(125)
 
 }

@@ -4,6 +4,8 @@ import org.apache.ibatis.jdbc.SQL;
 
 public class BookSQL {
 
+	
+	// 등록 실행하는 SQL
 	public String insert_sql() {
 		
 		return new SQL() {{
@@ -27,6 +29,7 @@ public class BookSQL {
 		}}.toString();
 	}
 	
+	// 수정을 실행할 sql문
 	public String update_sql() {
 		
 		return new SQL() {{

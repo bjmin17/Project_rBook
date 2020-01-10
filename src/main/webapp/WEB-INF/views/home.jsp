@@ -74,9 +74,29 @@ table a {
 </style>
 <script>
 $(function(){
+	$("#btn_book").click(function(){
+		
+		document.location.href = "${rootPath}/book/"
+		
+	})
+	
 	$("#btn_insert").click(function(){
 		
 		document.location.href = "${rootPath}/book/insert"
+		
+	})
+	
+	
+	
+	$("#btn_report").click(function(){
+		
+		document.location.href = "${rootPath}/report/"
+		
+	})
+	
+	$("#btn_report_insert").click(function(){
+		
+		document.location.href = "${rootPath}/report/insert"
 		
 	})
 	
@@ -84,18 +104,31 @@ $(function(){
 		let id = $(this).attr("data-id")
 		
 		alert(id)
-		document.location.href = "${rootPath}/book/view?id=" + id
+		document.location.href = "${rootPath}/report/view?id=" + id
 	})
 })
 </script>
 </head>
 <body>
 	<header>
-		<h3>독서록</h3>
+		<h3>도서정보</h3>
+		
 	</header>
 
 	<section>
+		<button id="btn_book" class="bz_button">도서리스트 보기</button>
 		<button id="btn_insert" class="bz_button">도서등록</button>
+		<button id="btn_report" class="bz_button">독서록보기</button>
+		<button id="btn_report_insert" class="bz_button">독서록등록</button>
+		<c:if test="${userDTO == null || userDTO.u_id == null}">
+			<a href="${rootPath}/member/login"><button id="btn_login" class="bz_button">로그인</button></a>
+			<a href="${rootPath}/user/join"><button id="btn_join" class="bz_button">회원가입</button></a>
+		</c:if>
+		<c:if test="${userDTO == null || userDTO.u_id == null}">
+			<a href="${rootPath}/member/logout"><button id="btn_login" class="bz_button">로그인</button></a>
+			<a href="#"><button id="btn_join" class="bz_button">${userDTO.m_id}</button></a>
+		</c:if>
+		
 	</section>
 
 	<section>

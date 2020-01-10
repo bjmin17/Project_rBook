@@ -74,9 +74,39 @@ table a {
 </style>
 <script>
 $(function(){
+	$("#btn_book").click(function(){
+		
+		document.location.href = "${rootPath}/book/"
+		
+	})
+	
 	$("#btn_insert").click(function(){
 		
 		document.location.href = "${rootPath}/book/insert"
+		
+	})
+	
+	$("#btn_login").click(function(){
+		
+		document.location.href = "${rootPath}/member/login"
+		
+	})
+	
+	$("#btn_join").click(function(){
+		
+		document.location.href = "${rootPath}/user/join"
+		
+	})
+	
+	$("#btn_report").click(function(){
+		
+		document.location.href = "${rootPath}/report/"
+		
+	})
+	
+	$("#btn_report_insert").click(function(){
+		
+		document.location.href = "${rootPath}/report/insert"
 		
 	})
 	
@@ -84,47 +114,54 @@ $(function(){
 		let id = $(this).attr("data-id")
 		
 		alert(id)
-		document.location.href = "${rootPath}/book/view?id=" + id
+		document.location.href = "${rootPath}/report/view?id=" + id
 	})
 })
 </script>
 </head>
 <body>
 	<header>
-		<h3>독서록</h3>
+		<h3>도서정보</h3>
 	</header>
 
 	<section>
+		<button id="btn_book" class="bz_button">도서리스트 보기</button>
 		<button id="btn_insert" class="bz_button">도서등록</button>
+		<button id="btn_login" class="bz_button">로그인</button>
+		<button id="btn_join" class="bz_button">회원가입</button>
+		<button id="btn_report" class="bz_button">독서록보기</button>
+		<button id="btn_report_insert" class="bz_button">독서록등록</button>
+		
 	</section>
 
 	<section>
 		<div>
 			<table border="1">
 				<tr>
+					<th>유저id</th>
 					<th>도서코드</th>
-					<th>도서명</th>
-					<th>저자</th>
-					<th>출판사</th>
-					<th>구입일자</th>
-					<th>구입가격제목</th>
+					<th>도서제목</th>
+					<th>독서일자</th>
+					<th>한줄소감</th>
+					<th>별점</th>
 				</tr>
 				<c:choose>
-					<c:when test="${empty bookList}">
+					<c:when test="${empty reportList}">
 						<tr>
-							<td colspan="6">도서자료가 없음</td>
+							<td colspan="6">독서록자료가 없음</td>
 						</tr>
 					</c:when>
 					<c:otherwise>
-						<c:forEach items="${bookList}" var="book">
+						<c:forEach items="${reportList}" var="report">
 							<tr class="list-body"
-								data-id="${book.b_code}">
-								<td>${book.b_code}</td>
-								<td>${book.b_name}</td>
-								<td>${book.b_auther}</td>
-								<td>${book.b_comp}</td>
-								<td>${book.b_year}</td>
-								<td>${book.b_iprice}</td>
+								data-id="${report.rb_seq}">
+								<!--  유저id, 도서코드, 도서제목, 독서일자, 한줄소감, 별점-->
+								<td>유저id</td>
+								<td>${report.rb_bcode}</td>
+								<td>도서제목</td>
+								<td>${report.rb_stime}</td>
+								<td>${report.rb_subject}</td>
+								<td>${report.rb_star}</td>
 							</tr>
 						</c:forEach>
 					</c:otherwise>

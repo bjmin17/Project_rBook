@@ -14,10 +14,16 @@ import lombok.ToString;
 @ToString
 @Builder
 public class BookVO {
+	// 도서코드
 	private String b_code;//	varchar2(20 byte)
+	// 도서명
 	private String b_name;//	nvarchar2(125 char)
+	// 저자
 	private String b_auther;//	nvarchar2(125 char)
+	// 출판사
 	private String b_comp;//	nvarchar2(125 char)
+	// 출판연도
 	private String b_year;//	varchar2(10 byte)
+	// 가격
 	private int b_iprice;//	number
 }
