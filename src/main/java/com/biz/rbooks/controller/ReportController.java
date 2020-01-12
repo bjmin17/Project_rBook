@@ -74,8 +74,12 @@ public class ReportController {
 		log.debug("***로그인 되어있는 아이디 : " + userDTO.getM_id());
 		reportDTO.setRb_id(userDTO.getM_id());
 		
+		// 도서정보 불러온 값을 rDTO에 저장, 도서명 나오기 위해
+		ReportDTO rDTO = rService.findByBCode(reportDTO.getRb_seq()+"");
+		
 		// 등록 메서드 구현
 		int ret = rService.insert(reportDTO);
+		reportDTO.setB_name(rDTO.getB_name());
 		
 		
 		model.addAttribute("reportDTO",reportDTO);

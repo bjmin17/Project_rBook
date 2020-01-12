@@ -49,6 +49,22 @@ public class ReportService {
 		return rDao.insert(reportDTO);
 	}
 
+	// 요런 느낌으로
+//	public ImageVO findBySeq(String img_seq) {
+//		
+//		ImageVO imgVO = imDao.findBySeq(img_seq);
+//		log.debug(imgVO.toString());
+//		
+//		// TODO Auto-generated method stub
+//		return imgVO;
+//	}
+	
+	public ReportDTO findByBCode(String rb_seq) {
+		ReportDTO bVO = rDao.findByBCode(rb_seq);
+		log.debug("리!절!트!맵! : " + bVO.toString());
+		return bVO;
+	}
+	
 	// 수정을 실행하는 다오와 연결하는 메서드
 	public int update(ReportDTO reportDTO) {
 		

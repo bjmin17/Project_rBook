@@ -26,7 +26,7 @@
 								<!--  유저id, 도서코드, 도서제목, 독서일자, 한줄소감, 별점-->
 								<td>${report.rb_id}</td>
 								<td>${report.rb_bcode}</td>
-								<td>도서제목</td>
+								<td>${report.b_name}</td>
 								<td>${report.rb_date}</td>
 								<td>${report.rb_subject}</td>
 								<td>${report.rb_star}</td>

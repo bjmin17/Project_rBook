@@ -67,6 +67,9 @@ table td {
 	text-overflow: ellipsis;
 	overflow: hidden;
 }
+table tr:nth-child(odd){
+	background-color: #ddd;
+}
 
 table a {
 	text-decoration: none;
@@ -75,6 +78,32 @@ table a {
 list-body:hover{
 	background-color: gray;
 
+}
+
+div.btn-box{
+	width:70%;
+	display:flex;
+	margin:5px auto;
+	justify-content: center;
+	align-items: center;
+		
+}
+
+.bz_button{
+	border-radius: 3px;
+	padding:5px 11px;
+	color:#fff;
+	display: inline-block;
+	background-color: #6b9ab8;
+	border : 1px solid #56819d;
+	vertical-align: middle;
+	text-decoration: none;
+	margin: 10px;
+}
+
+.bz_button:hover{
+	/*border:1px solid blue;*/
+	box-shadow: 5px 5px 8px rgba(80,80,80,0.8);
 }
 </style>
 <script>
@@ -137,6 +166,7 @@ $(function(){
 		<%@ include file="/WEB-INF/views/body/join.jsp" %
 	</c:if>*/%>
 	<section>
+		<div class="btn-box">
 		<button id="btn_book" class="bz_button">도서리스트 보기</button>
 		<button id="btn_insert" class="bz_button">도서등록</button>
 		<button id="btn_report" class="bz_button">독서록보기</button>
@@ -149,7 +179,7 @@ $(function(){
 			<a href="${rootPath}/member/logout"><button id="btn_login" class="bz_button">로그아웃</button></a>
 			<a href="#"><button id="btn_join" class="bz_button">${userDTO.m_id}님 로그인을 환영합니다</button></a>
 		</c:if>
-		
+		</div>
 	</section>
 	<c:if test = "${BODY == 'BOOK' }">
 		<%@ include file = "/WEB-INF/views/include/book-body.jsp" %>
