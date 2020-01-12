@@ -1,5 +1,7 @@
 package com.biz.rbooks.service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,27 +25,37 @@ public class BookService {
 		this.bDao = bDao;
 	}
 	
-	// 모든 도서 리스트를 보여주는 다오와 연결하는 메서드
+	// 모든 도서 리스트를 보여주기
 	public List<BookVO> selectAll(){
 		return bDao.selectAll();
 	}
 
-	// 등록을 실행하는 다오와 연결하는 메서드
+	// 도서정보를 등록을 하는 메서드
 	public int insert(BookVO bookVO) {
-
+		
+		// 날짜를 생성하고
+		Date date = new Date();
+		SimpleDateFormat sd = new SimpleDateFormat("MM/dd/yyyy");
+		
+		String curDate = sd.format(date);
+		
+		// 현재 등록날짜가 비어 있으면 오늘 날짜를 입력한 채로 다오로 보냄
+		if(bookVO.getB_year().isEmpty()) {
+			bookVO.setB_year(curDate);
+		}
 		return bDao.insert(bookVO);
 	}
 
-	// 수정을 실행하는 다오와 연결하는 메서드
+	// 수정하는 메서드
 	public int update(BookVO bookVO) {
-		log.debug("컨트롤러부터 받아온 업데이트 코드" + bookVO.getB_code());
 		
 		return bDao.update(bookVO);
 	}
 
-	// 특정 데이터 한개의 정보를 가져와서 BookVO 형태로 가져오는 메서드
+	// 한개의 상세정보를 보여주기 위한 메서드
 	public BookVO getBook(String str_seq) {
 
+		// 컨트롤러로 부터 받은 매개변수를 이용해 시퀀스로 찾아오기
 		BookVO bookVO = bDao.findByCode(str_seq);
 		return bookVO;
 	}

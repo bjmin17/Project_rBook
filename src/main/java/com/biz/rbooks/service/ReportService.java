@@ -21,6 +21,7 @@ public class ReportService {
 	protected final ReportDao rDao;
 	protected final BookDao bDao;
 
+	// 독서록 다오와 도서정보 다오를 사용하기 위해 생성자 메서드 생성
 	@Autowired
 	public ReportService(ReportDao rDao, BookDao bDao) {
 		super();
@@ -28,22 +29,21 @@ public class ReportService {
 		this.bDao = bDao;
 	}
 	
+	// 독서록을 모두 보여주는 메서드
 	public List<ReportDTO> selectAll(){
 		return rDao.selectAll();
 	}
 	
-	// 등록을 실행하는 다오와 연결하는 메서드
+	// 등록을 하는 메서드
 	public int insert(ReportDTO reportDTO) {
 
-//		String str_Seq = reportDTO.getRb_bcode();
-//		BookVO bookVO = bDao.findByCode(str_Seq);
-		
-		
+		// 현재 날짜 생성해서
 		Date date = new Date();
 		SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
 		
 		String curDate = sd.format(date);
 		
+		// 컨트롤러로 부터 전달받은 dto에 값을 저장
 		reportDTO.setRb_date(curDate);
 		
 		return rDao.insert(reportDTO);
@@ -52,7 +52,6 @@ public class ReportService {
 	// 수정을 실행하는 다오와 연결하는 메서드
 	public int update(ReportDTO reportDTO) {
 		
-		log.debug("생성날짜 : " + reportDTO.getRb_date());
 		return rDao.update(reportDTO);
 	}
 

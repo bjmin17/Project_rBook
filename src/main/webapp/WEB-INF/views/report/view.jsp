@@ -64,7 +64,7 @@
 <script>
 $(function(){
 	$("#btn-update").on("click",function(){
-		alert("update")
+		//alert("update")
 		/*
 		새 페이지를 만들어 지금 페이지 위에 겹쳐서 보여라
 		뒤로가기를 하면 이전페이지로 돌아가기가 되고
@@ -84,14 +84,22 @@ $(function(){
 			document.location.replace(query)
 		}
 	})
+	
+	$(".book_link").click(function(){
+		
+		let id = $(this).attr("data-id")
+		
+		document.location.href="${rootPath}/book/view?id=${reportDTO.rb_bcode}"
+	})
+	
 })
 </script>
 <body>
 	<table>
-		<caption>독서록정보 상세</caption>
+		<caption><a href="${rootPath}/report/">독서록정보 상세</a></caption>
 		<tr>
 			<th>일련번호</th><td>${reportDTO.rb_seq}</td>
-			<th>도서코드</th><td>${reportDTO.rb_bcode}</td>
+			<th>도서코드</th><td class="book_link" data-id="book_link">${reportDTO.rb_bcode}</td>
 		</tr>
 		<tr>
 			<th>독서일자</th><td>${reportDTO.rb_date}</td>

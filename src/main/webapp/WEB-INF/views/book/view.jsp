@@ -64,7 +64,7 @@
 <script>
 $(function(){
 	$("#btn-update").on("click",function(){
-		alert("update")
+		//alert("update")
 		/*
 		새 페이지를 만들어 지금 페이지 위에 겹쳐서 보여라
 		뒤로가기를 하면 이전페이지로 돌아가기가 되고
@@ -88,7 +88,7 @@ $(function(){
 </script>
 <body>
 	<table>
-		<caption>도서정보 상세</caption>
+		<caption><a href="${rootPath}/report/">도서정보 상세</a></caption>
 		<tr>
 			<th>도서코드</th><td>${book.b_code}</td>
 			<th>도서명</th><td>${book.b_name}</td>

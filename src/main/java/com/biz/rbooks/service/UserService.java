@@ -13,7 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 public class UserService {
 
-	
+	// 암호화를 위해서 BCryptPasswordEncoder를 이용
 	private final BCryptPasswordEncoder PasswordEncoder;
 	private final UserDao uDao;
 
@@ -24,17 +24,16 @@ public class UserService {
 		this.uDao = uDao;
 	}
 
-	/*
-	 * 회원가입처리 : insert
-	 * 최초가입자는 관리자로
-	 */
+	// 회원가입 처리
 	public int userJoin(UserDTO userDTO) {
 	
-		// 회원가입된 유저가 없다면
-		if(userDTO == null ) {
-			
-		}
+		// 컨트롤러로 부터 받은 jsp파일에서 부터 가져온
+		// 사용자가 직접 입력한 비밀번호가 담긴 dto를 받고
+		// 그 안에 담긴 비밀번호를 가져와서
+		// 암호화를 수행
 		String cryptText = PasswordEncoder.encode(userDTO.getM_password());
+		
+		// 암호화된 비밀번호를 다시 dto에 담아서 Dao로 보낸다
 		userDTO.setM_password(cryptText);
 		return uDao.userInsert(userDTO);
 	}
@@ -44,66 +43,55 @@ public class UserService {
 	 * 이미 해당 id가 있으면 true를 return하고
 	 * 없으면 false return
 	 */
-	public boolean userIdCheck(String u_id) {
-		UserDTO userDTO = uDao.findById(u_id);
-		
-		// u_id로 불러온 userDTO가 있고, 그 id가
-		// 매개변수에 있는 u_id와 같다면
-		if(userDTO != null && userDTO.getM_id().equalsIgnoreCase(u_id)) {
-			return true;
-		}
-		return false;
-	}
+//	public int userIdCheck(String u_id) {
+//		UserDTO userDTO = uDao.findById(u_id);
+//		return 0;
+//		// u_id로 불러온 userDTO가 있고, 그 id가
+//		// 매개변수에 있는 u_id와 같다면
+//		if(userDTO != null && userDTO.getM_id().equalsIgnoreCase(u_id)) {
+//			return true;
+//		}
+//		return false;
+//	}
 	
 	/*
 	 * 로그인처리
 	 * 회원id와 password를 전달받아서
-	 * 일치하면 true를 return
-	 * 그렇지 않으면 false return
+	 * 처리
 	 */
-	public boolean userLoginCheck(UserDTO userDTO) {
+	public UserDTO userLoginCheck(UserDTO userDTO) {
 		
-		log.debug("유저체크 : " + userDTO.toString());
 		// 사용자가 입력한 id
 		String inU_id = userDTO.getM_id();
-		log.debug("userDTO의 아이디 값 : " + userDTO.getM_id());
 		
 		// 사용자가 로그인하면서 입력한 평문상태의 비밀번호
 		String inU_pass = userDTO.getM_password();
 		
 		// 사용자가 입력한 id로
-		// Dao를 통해 등록되어있는 데이터를 찾아서
-		// 그 값을 userRDTO에 담아준다.
+
+		// DB에 저장된 것 중에 일치하는
+		// 데이터를 userRDTO에 담아준다.
 		UserDTO userRDTO = uDao.findById(inU_id);
-		log.debug("서비스, 로그인 체크에서 userRDTO 값 확인 : " + userRDTO.toString());
-		log.debug("DB에 등록된 DTO 정보 : " + userRDTO.toString());
 		// 회원정보가 없을 경우
 		if(userRDTO == null) {
-			return false;
+			// 메서드 종료
+			return null;
 		}
-		
-		// Dao를 통해서(SELECT) 조회한 id 
-		String sU_id = userRDTO.getM_id();
-		log.debug("userRDTO에 만들어진 아이디 값 : "+ sU_id);
-		String sU_password = userRDTO.getM_password();
-		// DB에 저장된 암호화된 상태의 사용자 비밀번호
-		String cryptU_pass = userRDTO.getM_password();
-		String cryptText = PasswordEncoder.encode(userDTO.getM_password());
 		
 		// 회원 id가 존재하는 경우
-		if(sU_id.equalsIgnoreCase(inU_id)) {
-			PasswordEncoder.matches(inU_pass, cryptU_pass);
-			
-//			userDTO = userRDTO;
-			
-			return true;
-		} else {
-			return false;
+		if(userRDTO != null) {
+			// 암호화된 비밀번호 가져오기
+			String cryptPassword = userRDTO.getM_password();
+			// 직접 입력한 비밀번호(inU_pass)와 암호화된 비밀번호(cryptPassword)비교하기
+			if(PasswordEncoder.matches(inU_pass, cryptPassword)) {
+				// 일치한다면 그 데이터 DTO를 보내주기
+				return userRDTO;
+			}
 		}
-	
+		return null;
 	}
 	
-	
+	// 유저 정보를 가져오기위한 메서드
 	public UserDTO getUser(String u_id) {
 		
 		return uDao.findById(u_id);

@@ -14,6 +14,7 @@ public class ReportSQL {
 			
 			INTO_COLUMNS("RB_SEQ");
 			INTO_COLUMNS("RB_BCODE");
+			INTO_COLUMNS("RB_ID");
 			INTO_COLUMNS("RB_DATE");
 			INTO_COLUMNS("RB_STIME");
 			INTO_COLUMNS("RB_RTIME");
@@ -23,6 +24,7 @@ public class ReportSQL {
 
 			INTO_VALUES("seq_read_book.NEXTVAL");
 			INTO_VALUES("#{rb_bcode,jdbcType=VARCHAR}");
+			INTO_VALUES("#{rb_id,jdbcType=VARCHAR}");
 			INTO_VALUES("#{rb_date,jdbcType=VARCHAR}");
 			INTO_VALUES("#{rb_stime,jdbcType=VARCHAR}");
 			INTO_VALUES("#{rb_rtime,jdbcType=VARCHAR}");
@@ -39,6 +41,7 @@ public class ReportSQL {
 			UPDATE("tbl_read_book");
 			WHERE("rb_seq = #{rb_seq,jdbcType=VARCHAR}");
 			SET("rb_bcode = #{rb_bcode,jdbcType=VARCHAR}");
+			SET("rb_id = #{rb_id,jdbcType=VARCHAR}");
 			SET("rb_date = #{rb_date,jdbcType=VARCHAR}");
 			SET("rb_stime = #{rb_stime,jdbcType=VARCHAR}");
 			SET("rb_rtime = #{rb_rtime,jdbcType=VARCHAR}");

@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<c:set var="rootPath" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -77,15 +78,15 @@ $(function(){
 <body>
 <fieldset>
 	<legend>
-		<c:if test="${TITLE == null }">회원가입</c:if>
-		<c:if test="${TITLE != null }">${TITLE}</c:if>
+		<a href="${rootPath}/report/"><c:if test="${TITLE == null }">회원가입</c:if></a>
+		<a href="${rootPath}/report/"><c:if test="${TITLE != null }">${TITLE}</c:if></a>
 	</legend>
 
 	<form:form modelAttribute="userDTO" autocomplete="on" class="memo-form">
 	
 	<div class="in-box-border">
 		<form:input path="m_id" type="email" class="in-box" placeholder="사용자 ID를 입력하고 Enter..."/>
-		<button type="button" id="id_check">아이디검사</button>
+		<%/* <button type="button" id="id_check">아이디검사</button>*/%>
 		<br/>
 		
 		<form:errors path="m_id" class="in-error"/><br/>

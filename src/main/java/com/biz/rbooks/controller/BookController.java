@@ -49,6 +49,7 @@ public class BookController {
 		
 		// bookList에 담은 값을 "bookList"라는 값에 담으며 jsp파일에 보내줌
 		model.addAttribute("bookList",bookList);
+		model.addAttribute("BODY","BOOK");
 		return "home";
 		
 	}

@@ -24,4 +24,9 @@ public class UserSQL {
 		}}.toString();
 	}
 	
+	// 회원정보 수정을 한다면 사용할 메서드
+	public String update_sql() {
+		return "";
+				
+	}
 }

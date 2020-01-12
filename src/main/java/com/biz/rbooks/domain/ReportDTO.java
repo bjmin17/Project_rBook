@@ -15,8 +15,10 @@ import lombok.ToString;
 @Builder
 public class ReportDTO {
 
+	// 독서록
 	private long rb_seq;//	number
 	private String rb_bcode;//	varchar2(20)
+	private String rb_id;//	varchar2(20 byte)
 	private String rb_date;//	varchar2(10)
 	private String rb_stime;//	varchar2(10)
 	private String rb_rtime;//	number(10,3)

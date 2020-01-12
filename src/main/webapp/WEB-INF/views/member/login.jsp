@@ -94,6 +94,10 @@ $(function(){
 	$("#btn_join").click(function(){
 		
 		document.location.href = "${rootPath}/user/join"
+	})
+	$("#btn_report").click(function(){
+		
+		document.location.href = "${rootPath}/report/"
 		
 	})
 	
@@ -101,27 +105,32 @@ $(function(){
 </script>
 </head>
 <body>
+	<% /* 
+		로그인 페이지에서 입력한 값들을 POST방식으로 해서 
+		action에서 지정한 주소로 보내준다.
+	*/ %>
 	<form method="POST" action="${rootPath}/member/login" class="login-form">
-		<h2>로그인</h2>
+		<h2><a href="${rootPath}/report/">로그인</a></h2>
 		
+		<% /* 
+			LOGIN_MSG의 값에 따라서 보여열을 다르게 보여준다.
+		*/ %>
 		<c:if test="${LOGIN_MSG == 'FAIL' }">
 			<h3>아이디나 비밀번호가 잘못되었습니다.</h3>
-		</c:if>
-		<c:if test="${LOGIN_MSG == 'TRY' }">
-			<h3>로그인을 해야합니다.</h3>
-		</c:if>
-		<c:if test="${LOGIN_MSG == 'NO_AUTH' }">
-			<h3>작성자만이 볼 수 있습니다.</h3>
 		</c:if>
 		<c:if test="${LOGIN_MSG == '0' }">
 			<h3>로그인을 환영합니다.</h3>
 		</c:if>
-		
+		<%/* 
+		<input>을 사용할 때, name의 값은 DTO에 있는 값들과 일치시켜주어야 한다.
+		*/ %>
 		<input type="text" name="m_id" placeholder="사용자 ID">
 		<input type="password" name="m_password" placeholder="비밀번호">
 		<button>로그인</button>
+		<% /* LOGIN_MSG가 0인 경우는 디폴트 값으로 0이 지정되어 있으므로
+			로그인을 첫 시도 했을경우이고, 처음일 경우만 회원가입이 보여지도록 해주는 코드*/ %>
 		<c:if test="${LOGIN_MSG == '0' }">
-			<button id="btn_join" class="bz_button">회원가입</button>
+			<button type="button" id="btn_join" class="bz_button">회원가입</button>
 		</c:if>
 	
 	</form>

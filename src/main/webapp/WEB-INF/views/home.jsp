@@ -71,6 +71,11 @@ table td {
 table a {
 	text-decoration: none;
 }
+
+list-body:hover{
+	background-color: gray;
+
+}
 </style>
 <script>
 $(function(){
@@ -90,81 +95,70 @@ $(function(){
 	
 	$("#btn_report").click(function(){
 		
-		document.location.href = "${rootPath}/report/"
+		if("${userDTO}" == "") {
+			document.location.href = "${rootPath}/member/login"
+		} else {
+			document.location.href = "${rootPath}/report/"
+		}
 		
 	})
 	
 	$("#btn_report_insert").click(function(){
 		
-		document.location.href = "${rootPath}/report/insert"
+		if("${userDTO}" == "") {
+			document.location.href = "${rootPath}/member/login"
+		} else {
+			document.location.href = "${rootPath}/report/insert"
+		}
 		
 	})
 	
 	$(".list-body").click(function(){
 		let id = $(this).attr("data-id")
 		
-		alert(id)
-		document.location.href = "${rootPath}/report/view?id=" + id
+		//alert(id)
+		if("${BODY}" == 'BOOK') {
+			document.location.href = "${rootPath}/book/view?id=" + id
+		}
+		if("${BODY}" == 'REPORT') {
+			document.location.href = "${rootPath}/report/view?id=" + id
+		}
 	})
 })
 </script>
 </head>
 <body>
 	<header>
-		<h3>도서정보</h3>
-		
+		<h3><a href="${rootPath}/report/">도서정보</a></h3>
+		<p><a href="${rootPath}/member/logout">${userDTO.m_id}</a></p>
 	</header>
 
+<% /* 	<c:if test="${BODY == 'BOOK'}"> 
+		<%@ include file="/WEB-INF/views/body/join.jsp" %
+	</c:if>*/%>
 	<section>
 		<button id="btn_book" class="bz_button">도서리스트 보기</button>
 		<button id="btn_insert" class="bz_button">도서등록</button>
 		<button id="btn_report" class="bz_button">독서록보기</button>
 		<button id="btn_report_insert" class="bz_button">독서록등록</button>
-		<c:if test="${userDTO == null || userDTO.u_id == null}">
+		<c:if test="${userDTO == null || userDTO.m_id == null}">
 			<a href="${rootPath}/member/login"><button id="btn_login" class="bz_button">로그인</button></a>
 			<a href="${rootPath}/user/join"><button id="btn_join" class="bz_button">회원가입</button></a>
 		</c:if>
-		<c:if test="${userDTO == null || userDTO.u_id == null}">
-			<a href="${rootPath}/member/logout"><button id="btn_login" class="bz_button">로그인</button></a>
-			<a href="#"><button id="btn_join" class="bz_button">${userDTO.m_id}</button></a>
+		<c:if test="${userDTO != null && userDTO.m_id != null}">
+			<a href="${rootPath}/member/logout"><button id="btn_login" class="bz_button">로그아웃</button></a>
+			<a href="#"><button id="btn_join" class="bz_button">${userDTO.m_id}님 로그인을 환영합니다</button></a>
 		</c:if>
 		
 	</section>
+	<c:if test = "${BODY == 'BOOK' }">
+		<%@ include file = "/WEB-INF/views/include/book-body.jsp" %>
+	</c:if>
+	<c:if test = "${BODY == 'REPORT' }">
+		<%@ include file = "/WEB-INF/views/include/report-body.jsp" %>
+	</c:if>
 
-	<section>
-		<div>
-			<table border="1">
-				<tr>
-					<th>도서코드</th>
-					<th>도서명</th>
-					<th>저자</th>
-					<th>출판사</th>
-					<th>구입일자</th>
-					<th>구입가격제목</th>
-				</tr>
-				<c:choose>
-					<c:when test="${empty bookList}">
-						<tr>
-							<td colspan="6">도서자료가 없음</td>
-						</tr>
-					</c:when>
-					<c:otherwise>
-						<c:forEach items="${bookList}" var="book">
-							<tr class="list-body"
-								data-id="${book.b_code}">
-								<td>${book.b_code}</td>
-								<td>${book.b_name}</td>
-								<td>${book.b_auther}</td>
-								<td>${book.b_comp}</td>
-								<td>${book.b_year}</td>
-								<td>${book.b_iprice}</td>
-							</tr>
-						</c:forEach>
-					</c:otherwise>
-				</c:choose>
-			</table>
-		</div>
-	</section>
+
 
 </body>
 </html>
