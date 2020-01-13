@@ -73,6 +73,10 @@ $(function(){
 	#u_id {
 		width:70%;
 	}
+	
+	a {
+		text-decoration: none;
+	}
 </style>
 </head>
 <body>

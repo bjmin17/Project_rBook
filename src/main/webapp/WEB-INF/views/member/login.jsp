@@ -87,6 +87,9 @@
 .login-form button:hover, .login-form button:focus{
 	background-color: #2ECC71;
 }
+a {
+	text-decoration: none;
+}
 </style>
 <script>
 $(function(){

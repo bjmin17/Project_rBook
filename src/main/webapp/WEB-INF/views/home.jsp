@@ -39,6 +39,10 @@ header {
 	color: white;
 }
 
+h3 {
+	text-align: center;
+}
+
 table {
 	width:70%;
 	margin: 20px auto;
@@ -74,10 +78,13 @@ table tr:nth-child(odd){
 table a {
 	text-decoration: none;
 }
+a {
+	text-decoration: none;
+}
 
 .list-body:hover{
 	background-color: #50bcdf;
-
+	cursor: pointer;
 }
 
 div.btn-box{
@@ -101,9 +108,15 @@ div.btn-box{
 	margin: 10px;
 }
 
+#btn_login {
+	margin-left: auto;
+
+}
+
 .bz_button:hover{
 	/*border:1px solid blue;*/
 	box-shadow: 5px 5px 8px rgba(80,80,80,0.8);
+	cursor: pointer;
 }
 </style>
 <script>
@@ -142,6 +155,13 @@ $(function(){
 		
 	})
 	
+	$("#btn_login").click(function(){
+		
+		document.location.href = "${rootPath}/member/login"
+	})
+	
+	
+	
 	$(".list-body").click(function(){
 		let id = $(this).attr("data-id")
 		
@@ -158,8 +178,7 @@ $(function(){
 </head>
 <body>
 	<header>
-		<h3><a href="${rootPath}/report/">도서정보</a></h3>
-		<p><a href="${rootPath}/member/logout">${userDTO.m_id}</a></p>
+		<h3><a href="${rootPath}/report/">독서록정보</a></h3>
 	</header>
 
 <% /* 	<c:if test="${BODY == 'BOOK'}"> 
@@ -167,18 +186,18 @@ $(function(){
 	</c:if>*/%>
 	<section>
 		<div class="btn-box">
-		<button id="btn_book" class="bz_button">도서리스트 보기</button>
-		<button id="btn_insert" class="bz_button">도서등록</button>
-		<button id="btn_report" class="bz_button">독서록보기</button>
-		<button id="btn_report_insert" class="bz_button">독서록등록</button>
-		<c:if test="${userDTO == null || userDTO.m_id == null}">
-			<a href="${rootPath}/member/login"><button id="btn_login" class="bz_button">로그인</button></a>
-			<a href="${rootPath}/user/join"><button id="btn_join" class="bz_button">회원가입</button></a>
-		</c:if>
-		<c:if test="${userDTO != null && userDTO.m_id != null}">
-			<a href="${rootPath}/member/logout"><button id="btn_login" class="bz_button">로그아웃</button></a>
-			<a href="#"><button id="btn_join" class="bz_button">${userDTO.m_id}님 로그인을 환영합니다</button></a>
-		</c:if>
+			<button id="btn_book" class="bz_button">도서리스트 보기</button>
+			<button id="btn_insert" class="bz_button">도서등록</button>
+			<button id="btn_report" class="bz_button">독서록보기</button>
+			<button id="btn_report_insert" class="bz_button">독서록등록</button>
+			<c:if test="${userDTO == null || userDTO.m_id == null}">
+				<button id="btn_login" class="bz_button">로그인</button>
+				<a href="${rootPath}/user/join"><button id="btn_join" class="bz_button">회원가입</button></a>
+			</c:if>
+			<c:if test="${userDTO != null && userDTO.m_id != null}">
+				<a href="${rootPath}/member/logout"><button id="btn_login" class="bz_button">로그아웃</button></a>
+				<a href="#"><button id="btn_join" class="bz_button">${userDTO.m_id}님 로그인을 환영합니다</button></a>
+			</c:if>
 		</div>
 	</section>
 	<c:if test = "${BODY == 'BOOK' }">

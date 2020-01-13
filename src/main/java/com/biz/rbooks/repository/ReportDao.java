@@ -33,83 +33,8 @@ public interface ReportDao {
 	@Select("SELECT * FROM tbl_books WHERE b_code = #{b_code}")
 	public BookVO getBooks(String b_code);
 
-//	@Select("SELECT * FROM tbl_gallery WHERE img_seq = #{img_seq}")
-//	@Results(
-//			value = {
-//				@Result(property = "img_seq",column = "img_seq"),
-//				@Result(property = "img_files",column = "img_seq",javaType = List.class,
-//						many = @Many(select = "getFiles")
-//				)
-//					
-//					
-//			}
-//			)
 	public ReportDTO findBySeq(String img_seq);
-//	@Results(
-//	value = {
-//			@Result(property = "img_seq",column = "img_seq"),
-//			@Result(property = "img_files",column = "img_seq",javaType = List.class,
-//				many = @Many(select = "getFiles")
-//	)
-//		
-//		
-//}
-//)
-//	@Select("SELECT * FROM tbl_read_book WHERE rb_bcode = #{rb_bcode}")
-//	@Results(
-//	value = {
-//			@Result(property = "rb_bcode",column = "rb_bcode"),
-//			@Result(property = "b_name",column = "rb_bcode",javaType = List.class,
-//				many = @Many(select = "getBooks")
-//	)
-//}
-//)	public ReportDTO findByBCode(String rb_bcode);
-	
-	// 2
-//	@Select("SELECT * FROM tbl_books WHERE B_CODE = #{b_code}")
-//	@Results(
-//				value= {
-//						@Result(property = "b_code" , column = "b_code"),
-//						@Result(property = "rbList", column="rb_bcode", javaType=List.class, many = @Many(select = "getBooks"))
-//				}
-//			)
-//	public BookDTO findById(String b_code);
-//	
-//	
-//	@Select("SELECT * FROM tbl_books WHERE B_NAME LIKE '%' || #{b_name,jdbcType=VARCHAR} || '%' ")
-//	@Results(
-//				value= {
-//						@Result(property = "b_code", column = "b_code"),
-//						@Result(property = "rbNameList", column = "rb_bname", javaType=List.class, many = @Many(select = "getBookNames")) 
-//				}
-//			)
-//	public List<BookDTO> findByName(String b_name);
-//	@Select("SELECT * FROM tbl_read_book WHERE rb_bcode = #{rb_bcode}")
-//	public ReadBookDTO getBooks(String rb_bcode);
-//	
-//	@Select("SELECT * FROM tbl_read_book WHERE rb_bname = #{rb_b_name}")
-//	public ReadBookDTO getBookNames(String rb_name);
-	
-//	@Select("SELECT * FROM tbl_read_book WHERE rb_bcode = #{rb_bcode}")
-//	@Results(
-//			value = {
-//					
-//					@Result(property = "rb_bcode",column = "rb_bcode"),
-//					@Result(property = "b_name",column = "rb_bcode", javaType = List.class,
-//									many = @Many(select = "getBooks")
-//								
-//							)
-//			}
-//			)
-//	
-//	public ReportDTO findByBCode(String rb_bcode);
-//	
-//	@Select("SELECT * FROM tbl_books WHERE b_code = #{b_code}")
-//	public BookVO getBooks(String b_code);
-	
-//	@Select("SELECT * FROM tbl_books WHERE b_code = #{b_code}")
-//	public ReportDTO getRb(String b_code);
-	
+
 	// 특정 데이터 한개만 보여주는 메서드
 	@Select("SELECT * FROM tbl_read_book WHERE rb_seq= #{rb_seq,jdbcType=VARCHAR}")
 	public ReportDTO findByCode(String rb_seq);

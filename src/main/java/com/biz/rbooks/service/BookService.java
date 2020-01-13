@@ -49,6 +49,16 @@ public class BookService {
 	// 수정하는 메서드
 	public int update(BookVO bookVO) {
 		
+		// 날짜를 생성하고
+		Date date = new Date();
+		SimpleDateFormat sd = new SimpleDateFormat("MM/dd/yyyy");
+		
+		String curDate = sd.format(date);
+		
+		// 현재 등록날짜가 비어 있으면 오늘 날짜를 입력한 채로 다오로 보냄
+		if(bookVO.getB_year().isEmpty()) {
+			bookVO.setB_year(curDate);
+		}
 		return bDao.update(bookVO);
 	}
 

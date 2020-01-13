@@ -18,23 +18,11 @@ public interface BookDao {
 
 	// 모든 도서리스트를 보여주는 메서드와 SQL문
 	@Select("SELECT * FROM tbl_books")
-//	@Results(
-//			value = {
-//					
-//					@Result(property = "b_code",column = "b_code"),
-//					@Result(property = "bookReportList",column = "b_code", javaType = List.class,
-//									many = @Many(select = "getBooks")
-//								
-//							)
-//			}
-//			)
 	public List<BookVO> selectAll();
 
 	// 특정 데이터 한개만 보여주는 메서드
 	@Select("SELECT * FROM tbl_books WHERE b_code = #{b_code,jdbcType=VARCHAR}")
 	public BookVO findByCode(String str_seq);
-	
-//	public List<BookVO> findByBCodeAll();
 	
 	@Select("SELECT * FROM tbl_read_book WHERE rb_bcode = #{rb_bcode}")
 	public ReportDTO getBooks(String rb_bcode);

@@ -59,6 +59,9 @@
 		/*border:1px solid blue;*/
 		box-shadow: 5px 5px 8px rgba(80,80,80,0.8);
 	}
+	a {
+		text-decoration: none;
+	}
 	
 </style>
 <script>

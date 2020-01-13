@@ -59,6 +59,14 @@
 		/*border:1px solid blue;*/
 		box-shadow: 5px 5px 8px rgba(80,80,80,0.8);
 	}
+	.book_link:hover{
+		background-color: #50bcdf;
+		cursor: pointer;
+	}
+	a {
+		text-decoration: none;
+	}
+	
 	
 </style>
 <script>
