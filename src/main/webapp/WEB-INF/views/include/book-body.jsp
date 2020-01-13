@@ -19,7 +19,7 @@
 						</tr>
 					</c:when>
 					<c:otherwise>
-						<c:forEach items="${bookList}" var="book">
+						<c:forEach items="${bookList}" var="book" varStatus="index">
 							<tr class="list-body"
 								data-id="${book.b_code}">
 								<td>${book.b_code}</td>

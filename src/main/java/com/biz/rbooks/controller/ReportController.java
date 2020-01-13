@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import com.biz.rbooks.domain.BookVO;
 import com.biz.rbooks.domain.ReportDTO;
 import com.biz.rbooks.domain.UserDTO;
+import com.biz.rbooks.service.BookService;
 import com.biz.rbooks.service.ReportService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -27,7 +29,7 @@ import lombok.extern.slf4j.Slf4j;
 public class ReportController {
 
 	private final ReportService rService;
-	
+	private final BookService bService;
 	
 	@ModelAttribute("reportDTO")
 	public ReportDTO reportDTO() {
@@ -36,20 +38,25 @@ public class ReportController {
 	}
 
 	@Autowired
-	public ReportController(ReportService rService) {
+	public ReportController(ReportService rService, BookService bService) {
 		super();
 		this.rService = rService;
+		this.bService = bService;
 	}
 	
 	// 독서록정보 전체 리스트 보여주는 코드
 	@RequestMapping(value="/",method=RequestMethod.GET)
-	public String list(Model model) {
+	public String list(Model model, SessionStatus sStatus) {
 		// 서비스로부터 가져와서 bookList에 담고
+//		List<ReportDTO> reportList = rService.selectAll();
 		List<ReportDTO> reportList = rService.selectAll();
-		
+		log.debug("독서록 컨트롤러 reportList : " + reportList.toString());
 		// bookList에 담은 값을 "bookList"라는 값에 담으며 jsp파일에 보내줌
 		model.addAttribute("reportList",reportList);
+//		model.addAttribute("BNAME",reportList.get(0)?.getBNameList().get(0).getB_name());
 		model.addAttribute("BODY","REPORT");
+		
+		sStatus.setComplete();
 		return "home";
 	}
 	// 독서록정보 등록 메서드, jsp의 form에 설정된 modelAttribute의 값을
@@ -74,12 +81,12 @@ public class ReportController {
 		log.debug("***로그인 되어있는 아이디 : " + userDTO.getM_id());
 		reportDTO.setRb_id(userDTO.getM_id());
 		
-		// 도서정보 불러온 값을 rDTO에 저장, 도서명 나오기 위해
-		ReportDTO rDTO = rService.findByBCode(reportDTO.getRb_seq()+"");
+//		 도서정보 불러온 값을 rDTO에 저장, 도서명 나오기 위해
+//		ReportDTO rDTO = rService.findByBCode(reportDTO.getRb_seq()+"");
 		
 		// 등록 메서드 구현
 		int ret = rService.insert(reportDTO);
-		reportDTO.setB_name(rDTO.getB_name());
+//		reportDTO.setB_name(rDTO.getB_name());
 		
 		
 		model.addAttribute("reportDTO",reportDTO);
@@ -107,6 +114,11 @@ public class ReportController {
 	@RequestMapping(value="/update",method=RequestMethod.GET)
 	public String update(String id, @ModelAttribute("reportDTO") ReportDTO reportDTO, Model model) {
 		
+		
+//		ReportDTO rDTO = rService.findByBCode(reportDTO.getRb_bcode());
+//		log.debug("도서명 가져오기 위한 DTO : " + rDTO.toString());
+//		
+//		reportDTO.setB_name(rDTO.getB_name());
 		
 		// 특정 독서록의 정보를 가져오는 메서드를 실현하고
 		// 그 결과 값을 reportDTO에 담는다.

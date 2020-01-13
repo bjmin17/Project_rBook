@@ -38,14 +38,30 @@
 	<fieldset>
 		<legend><a href="${rootPath}/report/">독서록 등록</a></legend>
 		<form method="POST" class="book-form">
-			<label>도서코드</label><input type="text" name="rb_bcode" id="rb_bcode" value="${reportDTO.rb_bcode}">
-			<input type="hidden" name="rb_id" id="rb_id" value="${reportDTO.rb_id}">
-			<label>독서일자</label><input type="date" name="rb_date" id="rb_date" placeholder="오늘날짜 등록할거면 입력 안 해도 됩니다." value="${reportDTO.rb_date}">
-			<label>시작시간</label><input type="text" name="rb_stime" id="rb_stime" value="${reportDTO.rb_stime}">
-			<label>읽은시간</label><input type="text" name="rb_rtime" id="rb_rtime" value="${reportDTO.rb_rtime}">
-			<label>한줄소감</label><input type="text" name="rb_subject" id="rb_subject" value="${reportDTO.rb_subject}">
-			<label>긴줄소감</label><input type="text" name="rb_text" id="rb_text" value="${reportDTO.rb_text}">
-			<label>별점</label><input type="number" min="0" max="5" name="rb_star" id="rb_star" value="${reportDTO.rb_star}">
+			<div>
+				<label>도서코드</label><input type="text" name="rb_bcode" id="rb_bcode" value="${reportDTO.rb_bcode}">
+			</div>
+			<div>
+				<input type="hidden" name="rb_id" id="rb_id" value="${reportDTO.rb_id}">
+			</div>
+			<div>
+				<label>독서일자</label><input type="date" name="rb_date" id="rb_date" placeholder="오늘날짜 등록할거면 입력 안 해도 됩니다." value="${reportDTO.rb_date}">
+			</div>
+			<div>
+				<label>시작시간</label><input type="text" name="rb_stime" id="rb_stime" value="${reportDTO.rb_stime}">
+			</div>
+			<div>
+				<label>읽은시간</label><input type="text" name="rb_rtime" id="rb_rtime" value="${reportDTO.rb_rtime}">
+			</div>
+			<div>
+				<label>한줄소감</label><input type="text" name="rb_subject" id="rb_subject" value="${reportDTO.rb_subject}">
+			</div>
+			<div>
+				<label>긴줄소감</label><input type="text" name="rb_text" id="rb_text" value="${reportDTO.rb_text}">
+			</div>
+			<div>
+				<label>별점</label><input type="number" min="0" max="5" name="rb_star" id="rb_star" value="${reportDTO.rb_star}">
+			</div>
 			<button id="btn-save" >저장</button>
 		</form>
 		<%/* 

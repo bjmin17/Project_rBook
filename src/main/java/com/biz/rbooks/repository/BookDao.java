@@ -5,20 +5,39 @@ import java.util.List;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.InsertProvider;
+import org.apache.ibatis.annotations.Many;
+import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.UpdateProvider;
 
 import com.biz.rbooks.domain.BookVO;
+import com.biz.rbooks.domain.ReportDTO;
 
 public interface BookDao {
 
 	// 모든 도서리스트를 보여주는 메서드와 SQL문
 	@Select("SELECT * FROM tbl_books")
+//	@Results(
+//			value = {
+//					
+//					@Result(property = "b_code",column = "b_code"),
+//					@Result(property = "bookReportList",column = "b_code", javaType = List.class,
+//									many = @Many(select = "getBooks")
+//								
+//							)
+//			}
+//			)
 	public List<BookVO> selectAll();
 
 	// 특정 데이터 한개만 보여주는 메서드
 	@Select("SELECT * FROM tbl_books WHERE b_code = #{b_code,jdbcType=VARCHAR}")
 	public BookVO findByCode(String str_seq);
+	
+//	public List<BookVO> findByBCodeAll();
+	
+	@Select("SELECT * FROM tbl_read_book WHERE rb_bcode = #{rb_bcode}")
+	public ReportDTO getBooks(String rb_bcode);
 	
 	// BookSQL 클래스에 있는 insert_sql 메서드를 이용해
 	// 등록을 실현하는 코드

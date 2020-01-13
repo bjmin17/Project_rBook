@@ -1,5 +1,7 @@
 package com.biz.rbooks.domain;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -27,7 +29,7 @@ public class ReportDTO {
 	
 	// 도서정보에 등록된 도서명을 가져오기 위해 생성
 	// 한개만 가져올테니 List가 아닌
-	private BookVO b_name;
+	private List<BookVO> b_name_list;
 	
 	private int rb_star;//	number
 

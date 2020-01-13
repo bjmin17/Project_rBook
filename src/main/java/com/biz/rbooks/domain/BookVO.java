@@ -1,5 +1,7 @@
 package com.biz.rbooks.domain;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -26,4 +28,6 @@ public class BookVO {
 	private String b_year;//	varchar2(10 byte)
 	// 가격
 	private int b_iprice;//	number
+	
+	private List<ReportDTO> bookReportList; 
 }

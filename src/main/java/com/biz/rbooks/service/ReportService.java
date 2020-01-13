@@ -38,36 +38,47 @@ public class ReportService {
 	public int insert(ReportDTO reportDTO) {
 
 		// 현재 날짜 생성해서
+		
 		Date date = new Date();
 		SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat st = new SimpleDateFormat("hh:mm:ss");
 		
 		String curDate = sd.format(date);
+		String curTime = st.format(date);
 		
-		// 컨트롤러로 부터 전달받은 dto에 값을 저장
-		reportDTO.setRb_date(curDate);
+		// 독서록 등록날짜가 비어있을 경우
+		if(reportDTO.getRb_date().isEmpty()) {
+			// 현재 날짜 입력
+			reportDTO.setRb_date(curDate);
+		}
+		// 독서시작시간 비어있으면
+		if(reportDTO.getRb_stime().isEmpty()) {
+			// 현재 시간 입력
+			reportDTO.setRb_stime(curTime);
+		}
 		
 		return rDao.insert(reportDTO);
 	}
 
-	// 요런 느낌으로
-//	public ImageVO findBySeq(String img_seq) {
-//		
-//		ImageVO imgVO = imDao.findBySeq(img_seq);
-//		log.debug(imgVO.toString());
-//		
-//		// TODO Auto-generated method stub
-//		return imgVO;
-//	}
-	
-	public ReportDTO findByBCode(String rb_seq) {
-		ReportDTO bVO = rDao.findByBCode(rb_seq);
-		log.debug("리!절!트!맵! : " + bVO.toString());
-		return bVO;
-	}
-	
 	// 수정을 실행하는 다오와 연결하는 메서드
 	public int update(ReportDTO reportDTO) {
 		
+		Date date = new Date();
+		SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat st = new SimpleDateFormat("hh:mm:ss");
+		
+		String curDate = sd.format(date);
+		String curTime = st.format(date);
+		// 독서록 등록날짜가 비어있을 경우
+		if(reportDTO.getRb_date().isEmpty()) {
+			// 현재 날짜 입력
+			reportDTO.setRb_date(curDate);
+		}
+		// 독서시작시간 비어있으면
+		if(reportDTO.getRb_stime().isEmpty()) {
+			// 현재 시간 입력
+			reportDTO.setRb_stime(curTime);
+		}
 		return rDao.update(reportDTO);
 	}
 

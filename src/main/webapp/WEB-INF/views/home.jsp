@@ -40,7 +40,7 @@ header {
 }
 
 table {
-	width:90%;
+	width:70%;
 	margin: 20px auto;
 	border-bottom: 1px solid #ccc;
 	border-collapse: collapse;
@@ -75,8 +75,8 @@ table a {
 	text-decoration: none;
 }
 
-list-body:hover{
-	background-color: gray;
+.list-body:hover{
+	background-color: #50bcdf;
 
 }
 

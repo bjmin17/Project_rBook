@@ -16,9 +16,22 @@ import com.biz.rbooks.domain.ReportDTO;
 public interface ReportDao {
 
 	// 모든 독서록리스트를 보여주는 메서드와 SQL문
+	
 	@Select("SELECT * FROM tbl_read_book")
+	@Results(
+	value = {
+			
+			@Result(property = "rb_bcode",column = "rb_bcode"),
+			@Result(property = "b_name_list",column = "rb_bcode", javaType = List.class,
+							many = @Many(select = "getBooks")
+						
+					)
+	}
+	)
 	public List<ReportDTO> selectAll();
-
+	
+	@Select("SELECT * FROM tbl_books WHERE b_code = #{b_code}")
+	public BookVO getBooks(String b_code);
 
 //	@Select("SELECT * FROM tbl_gallery WHERE img_seq = #{img_seq}")
 //	@Results(
@@ -77,22 +90,22 @@ public interface ReportDao {
 //	@Select("SELECT * FROM tbl_read_book WHERE rb_bname = #{rb_b_name}")
 //	public ReadBookDTO getBookNames(String rb_name);
 	
-	@Select("SELECT * FROM tbl_read_book WHERE rb_bcode = #{rb_bcode}")
-	@Results(
-			value = {
-					
-					@Result(property = "rb_bcode",column = "rb_bcode"),
-					@Result(property = "b_name",column = "rb_bcode", javaType = List.class,
-									many = @Many(select = "getBooks")
-								
-							)
-			}
-			)
-	
-	public ReportDTO findByBCode(String rb_bcode);
-	
-	@Select("SELECT * FROM tbl_books WHERE b_code = #{b_code}")
-	public BookVO getBooks(String b_code);
+//	@Select("SELECT * FROM tbl_read_book WHERE rb_bcode = #{rb_bcode}")
+//	@Results(
+//			value = {
+//					
+//					@Result(property = "rb_bcode",column = "rb_bcode"),
+//					@Result(property = "b_name",column = "rb_bcode", javaType = List.class,
+//									many = @Many(select = "getBooks")
+//								
+//							)
+//			}
+//			)
+//	
+//	public ReportDTO findByBCode(String rb_bcode);
+//	
+//	@Select("SELECT * FROM tbl_books WHERE b_code = #{b_code}")
+//	public BookVO getBooks(String b_code);
 	
 //	@Select("SELECT * FROM tbl_books WHERE b_code = #{b_code}")
 //	public ReportDTO getRb(String b_code);

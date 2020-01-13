@@ -39,12 +39,24 @@
 		<legend><a href="${rootPath}/report/">도서정보 등록</a></legend>
 		
 		<form method="POST" class="book-form">
-			<label>도서코드</label><input type="text" name="b_code" id="b_code" value="${bookDTO.b_code}">
-			<label>도서명</label><input type="text" name="b_name" id="b_name" value="${bookDTO.b_name}">
-			<label>저자</label><input type="text" name="b_auther" id="b_auther" value="${bookDTO.b_auther}">
-			<label>출판사</label><input type="text" name="b_comp" id="b_comp" value="${bookDTO.b_comp}">
-			<label>출판연도</label><input type="date" name="b_year" id="b_year" value="${bookDTO.b_year}">
-			<label>가격</label><input type="number" name="b_iprice" id="b_iprice" value="${bookDTO.b_iprice}">
+			<div>
+				<label>도서코드</label><input type="text" name="b_code" id="b_code" value="${bookDTO.b_code}">
+			</div>
+			<div>
+				<label>도서명</label><input type="text" name="b_name" id="b_name" value="${bookDTO.b_name}">
+			</div>
+			<div>
+				<label>저자</label><input type="text" name="b_auther" id="b_auther" value="${bookDTO.b_auther}">
+			</div>
+			<div>
+				<label>출판사</label><input type="text" name="b_comp" id="b_comp" value="${bookDTO.b_comp}">
+			</div>
+			<div>
+				<label>출판연도</label><input type="date" name="b_year" id="b_year" value="${bookDTO.b_year}">
+			</div>
+			<div>
+				<label>가격</label><input type="number" name="b_iprice" id="b_iprice" value="${bookDTO.b_iprice}">
+			</div>
 			<button id="btn-save" >저장</button>
 		</form>
 		<%/* 

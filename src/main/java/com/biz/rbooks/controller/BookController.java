@@ -42,7 +42,7 @@ public class BookController {
 
 	// 도서정보 전체 리스트 보여주는 코드
 	@RequestMapping(value="/",method=RequestMethod.GET)
-	public String list(Model model) {
+	public String list(Model model, SessionStatus sStatus) {
 		// 서비스로부터 가져와서 bookList에 담고
 		List<BookVO> bookList = bService.selectAll();
 		log.debug("리스트 : " + bookList.toString());
@@ -50,6 +50,8 @@ public class BookController {
 		// bookList에 담은 값을 "bookList"라는 값에 담으며 jsp파일에 보내줌
 		model.addAttribute("bookList",bookList);
 		model.addAttribute("BODY","BOOK");
+		
+		sStatus.setComplete();
 		return "home";
 		
 	}

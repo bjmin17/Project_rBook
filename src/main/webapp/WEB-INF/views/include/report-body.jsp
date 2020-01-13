@@ -5,6 +5,7 @@
 		<div>
 			<table border="1">
 				<tr>
+					<th>번호</th>
 					<th>유저id</th>
 					<th>도서코드</th>
 					<th>도서제목</th>
@@ -15,18 +16,19 @@
 				<c:choose>
 					<c:when test="${empty reportList}">
 						<tr>
-							<td colspan="6">독서록자료가 없음</td>
+							<td colspan="7">독서록자료가 없음</td>
 						</tr>
 					</c:when>
 					<c:otherwise>
-						<c:forEach items="${reportList}" var="report">
+						<c:forEach items="${reportList}" var="report" varStatus="status">
 							<c:if test="${userDTO != null && userDTO.m_id != null && userDTO.m_id == report.rb_id}">
 							<tr class="list-body"
 								data-id="${report.rb_seq}">
 								<!--  유저id, 도서코드, 도서제목, 독서일자, 한줄소감, 별점-->
+								<td>${status.count}</td>
 								<td>${report.rb_id}</td>
 								<td>${report.rb_bcode}</td>
-								<td>${report.b_name}</td>
+								<td>${report.b_name_list[0].b_name}</td>
 								<td>${report.rb_date}</td>
 								<td>${report.rb_subject}</td>
 								<td>${report.rb_star}</td>
