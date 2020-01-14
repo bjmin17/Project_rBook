@@ -106,11 +106,11 @@ div.btn-box{
 	vertical-align: middle;
 	text-decoration: none;
 	margin: 10px;
+	
 }
 
-#btn_login {
+#btn_login, #btn_logout {
 	margin-left: auto;
-
 }
 
 .bz_button:hover{
@@ -160,6 +160,12 @@ $(function(){
 		document.location.href = "${rootPath}/member/login"
 	})
 	
+	$("#btn_logout").click(function(){
+		
+		document.location.href = "${rootPath}/member/logout"
+	})
+	
+	
 	
 	
 	$(".list-body").click(function(){
@@ -195,7 +201,7 @@ $(function(){
 				<a href="${rootPath}/user/join"><button id="btn_join" class="bz_button">회원가입</button></a>
 			</c:if>
 			<c:if test="${userDTO != null && userDTO.m_id != null}">
-				<a href="${rootPath}/member/logout"><button id="btn_login" class="bz_button">로그아웃</button></a>
+				<button id="btn_logout" class="bz_button">로그아웃</button>
 				<a href="#"><button id="btn_join" class="bz_button">${userDTO.m_id}님 로그인을 환영합니다</button></a>
 			</c:if>
 		</div>

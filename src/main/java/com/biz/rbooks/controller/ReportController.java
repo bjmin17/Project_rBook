@@ -65,7 +65,7 @@ public class ReportController {
 	public String insert(@ModelAttribute("reportDTO") ReportDTO reportDTO, Model model) {
 		
 		
-		model.addAttribute("reportDTO",reportDTO);
+//		model.addAttribute("reportDTO",reportDTO);
 		
 		return "report/insert";
 				
