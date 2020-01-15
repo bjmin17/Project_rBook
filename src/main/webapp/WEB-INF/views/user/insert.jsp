@@ -21,7 +21,7 @@ $(function(){
 		$("#btn-save").click(function(){
 
 			$("form").submit()
-			
+			alert("회원가입 완료")
 		})
 		
 	})
@@ -34,7 +34,7 @@ $(function(){
 	fieldset{
 		width:70%;
 		margin:20px auto;
-		border:1px solid green;
+		border:1px solid black;
 		border-radius: 10px;
 	}
 	legend {
@@ -76,6 +76,18 @@ $(function(){
 	
 	a {
 		text-decoration: none;
+		color: black;
+	}
+	#btn-save{
+		border-radius: 3px;
+		padding:5px 11px;
+		color:white;
+		display: inline-block;
+		background-color: black;
+		border : 1px solid #56819d;
+		vertical-align: middle;
+		text-decoration: none;
+		margin: 10px;
 	}
 </style>
 </head>
@@ -89,7 +101,7 @@ $(function(){
 	<form:form modelAttribute="userDTO" autocomplete="on" class="memo-form">
 	
 	<div class="in-box-border">
-		<form:input path="m_id" type="email" class="in-box" placeholder="사용자 ID를 입력하고 Enter..."/>
+		<form:input path="m_id" type="text" class="in-box" placeholder="사용자 ID(4~20자리)를 입력하고 Enter..."/>
 		<%/* <button type="button" id="id_check">아이디검사</button>*/%>
 		<br/>
 		
@@ -97,7 +109,7 @@ $(function(){
 		<span id="m_id_msg"></span>
 	</div>
 	<div class="in-box-border">
-		<form:input path="m_password" type="password" class="in-box" placeholder="비밀번호를 입력하세요"/><br/>
+		<form:input path="m_password" type="password" class="in-box" placeholder="비밀번호(8~20자리)를 입력하세요"/><br/>
 		<form:errors path="m_password" class="in-error"/>
 	</div>
 	

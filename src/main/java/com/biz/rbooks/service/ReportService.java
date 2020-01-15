@@ -41,7 +41,7 @@ public class ReportService {
 		
 		Date date = new Date();
 		SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
-		SimpleDateFormat st = new SimpleDateFormat("hh:mm:ss");
+		SimpleDateFormat st = new SimpleDateFormat("HH:mm:ss");
 		
 		String curDate = sd.format(date);
 		String curTime = st.format(date);

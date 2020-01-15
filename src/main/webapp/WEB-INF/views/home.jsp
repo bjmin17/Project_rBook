@@ -24,23 +24,25 @@
 <style>
 * {
 	box-sizing: border-box;
-	margin: 0px;
+	margin: 0px auto;
 	padding: 0px;
 }
 
 body {
-	width: 100%;
+	width: 1200px;
+	height: 100%;
 }
 
 header {
-	background-color: #41D3BD;
+	background-color: black;
 	margin: 0;
 	padding: 1rem;
-	color: white;
 }
 
 h3 {
 	text-align: center;
+	background-color:inherit; 
+	
 }
 
 table {
@@ -64,6 +66,7 @@ table th {
 	border-bottom: 1px solid #ccc;
 }
 
+
 table td {
 	padding: 12px 10px;
 	border-bottom: 1px solid #ccc;
@@ -80,6 +83,7 @@ table a {
 }
 a {
 	text-decoration: none;
+	color:white;
 }
 
 .list-body:hover{
@@ -99,9 +103,9 @@ div.btn-box{
 .bz_button{
 	border-radius: 3px;
 	padding:5px 11px;
-	color:#fff;
+	color:white;
 	display: inline-block;
-	background-color: #6b9ab8;
+	background-color: black;
 	border : 1px solid #56819d;
 	vertical-align: middle;
 	text-decoration: none;
@@ -202,7 +206,7 @@ $(function(){
 			</c:if>
 			<c:if test="${userDTO != null && userDTO.m_id != null}">
 				<button id="btn_logout" class="bz_button">로그아웃</button>
-				<a href="#"><button id="btn_join" class="bz_button">${userDTO.m_id}님 로그인을 환영합니다</button></a>
+				<a href="#"><button id="btn_join" class="bz_button">${userDTO.m_id}</button></a>
 			</c:if>
 		</div>
 	</section>

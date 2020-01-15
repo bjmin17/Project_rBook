@@ -1,5 +1,8 @@
 package com.biz.rbooks.service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -33,6 +36,14 @@ public class UserService {
 		// 암호화를 수행
 		String cryptText = PasswordEncoder.encode(userDTO.getM_password());
 		
+		Date date = new Date();
+		SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat st = new SimpleDateFormat("HH:mm:ss");
+		
+		String curDate = sd.format(date);
+//		String curTime = st.format(date);
+		
+		userDTO.setM_login_date(curDate);
 		// 암호화된 비밀번호를 다시 dto에 담아서 Dao로 보낸다
 		userDTO.setM_password(cryptText);
 		return uDao.userInsert(userDTO);

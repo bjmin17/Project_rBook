@@ -13,7 +13,7 @@
 	fieldset{
 		width:70%;
 		margin:20px auto;
-		border:1px solid green;
+		border:1px solid black;
 		border-radius: 10px;
 	}
 	legend {
@@ -34,6 +34,18 @@
 	}
 	a {
 		text-decoration: none;
+		color:black;
+	}
+	#btn-save{
+		border-radius: 3px;
+		padding:5px 11px;
+		color:white;
+		display: inline-block;
+		background-color: black;
+		border : 1px solid #56819d;
+		vertical-align: middle;
+		text-decoration: none;
+		margin: 10px;
 	}
 </style>
 </head>
@@ -43,22 +55,22 @@
 		
 		<form method="POST" class="book-form">
 			<div>
-				<label>도서코드</label><input type="text" name="b_code" id="b_code" value="${bookDTO.b_code}">
+				<label>도서코드</label><br/><input type="text" name="b_code" id="b_code" value="${bookDTO.b_code}">
 			</div>
 			<div>
-				<label>도서명</label><input type="text" name="b_name" id="b_name" value="${bookDTO.b_name}">
+				<label>도서명</label><br/><input type="text" name="b_name" id="b_name" value="${bookDTO.b_name}">
 			</div>
 			<div>
-				<label>저자</label><input type="text" name="b_auther" id="b_auther" value="${bookDTO.b_auther}">
+				<label>저자</label><br/><input type="text" name="b_auther" id="b_auther" value="${bookDTO.b_auther}">
 			</div>
 			<div>
-				<label>출판사</label><input type="text" name="b_comp" id="b_comp" value="${bookDTO.b_comp}">
+				<label>출판사</label><br/><input type="text" name="b_comp" id="b_comp" value="${bookDTO.b_comp}">
 			</div>
 			<div>
-				<label>출판연도</label><input type="date" name="b_year" id="b_year" value="${bookDTO.b_year}">
+				<label>출판연도</label><br/><input type="date" name="b_year" id="b_year" value="${bookDTO.b_year}">
 			</div>
 			<div>
-				<label>가격</label><input type="number" name="b_iprice" id="b_iprice" value="${bookDTO.b_iprice}">
+				<label>가격</label><br/><input type="number" name="b_iprice" id="b_iprice" value="${bookDTO.b_iprice}">
 			</div>
 			<button id="btn-save" >저장</button>
 		</form>

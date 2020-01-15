@@ -1,5 +1,7 @@
 package com.biz.rbooks.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -68,7 +70,7 @@ public class UserController {
 	// BindingResult 의 경우 ModelAttribute 을 이용해 매개변수를 Bean 에 binding 할 때 
 	// 발생한 오류 정보를 받기 위해 선언해야 하는 애노테이션입니다.
 	@RequestMapping(value="/join",method=RequestMethod.POST)
-	public String join(@ModelAttribute("userDTO")  UserDTO userDTO,
+	public String join(@ModelAttribute("userDTO") @Valid UserDTO userDTO,
 			BindingResult bResult, Model model) {
 		
 		// 에러가 발생한다면??

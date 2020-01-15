@@ -1,6 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	<style>
+	table th:nth-child(1){
+		width:160px;
+	}
+	table th:nth-child(2){
+		width:250px;
+	}
+	table th:nth-child(5){
+		width:110px;
+	}
+	table th:nth-child(6){
+		width:90px;
+	}
+	</style>
 	<section>
 		<div>
 			<table border="1">

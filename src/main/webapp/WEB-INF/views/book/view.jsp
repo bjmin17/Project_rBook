@@ -46,9 +46,9 @@
 	a.btn{
 		border-radius: 3px;
 		padding:5px 11px;
-		color:#fff;
+		color:white;
 		display: inline-block;
-		background-color: #6b9ab8;
+		background-color: black;
 		border : 1px solid #56819d;
 		vertical-align: middle;
 		text-decoration: none;
@@ -61,6 +61,7 @@
 	}
 	a {
 		text-decoration: none;
+		color:black;
 	}
 	
 </style>

@@ -46,9 +46,9 @@
 	a.btn{
 		border-radius: 3px;
 		padding:5px 11px;
-		color:#fff;
+		color:white;
 		display: inline-block;
-		background-color: #6b9ab8;
+		background-color: black;
 		border : 1px solid #56819d;
 		vertical-align: middle;
 		text-decoration: none;
@@ -65,9 +65,18 @@
 	}
 	a {
 		text-decoration: none;
+		color:black;
 	}
-	
-	
+	.tr_subject td{
+		width: 75%;
+	}
+	.tr_text{
+		height: 300px;
+	}
+	.td_text{
+		white-space: pre-line;
+		overflow-y: auto;
+	}
 </style>
 <script>
 $(function(){
@@ -115,11 +124,13 @@ $(function(){
 		</tr>
 		<tr>
 			<th>독서시간</th><td>${reportDTO.rb_rtime}</td>
-			<th>한줄소감</th><td>${reportDTO.rb_subject}</td>
-		</tr>
-		<tr>
-			<th>긴줄소감</th><td>${reportDTO.rb_text}</td>
 			<th>별점</th><td>${reportDTO.rb_star}</td>
+		</tr>
+		<tr class="tr_subject">
+			<th>한줄소감</th><td colspan="3">${reportDTO.rb_subject}</td>
+		</tr>
+		<tr class="tr_text">
+			<th class="th_text">긴줄소감</th><td class="td_text" colspan="3">${reportDTO.rb_text}</td>
 		</tr>
 	</table>
 	<br/><br/>

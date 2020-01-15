@@ -1,6 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	<style>
+		table th:nth-child(1){
+			width: 60px;
+		}
+		table th:nth-child(2){
+		}
+		table th:nth-child(3){
+			width: 160px;
+		}
+		table th:nth-child(5){
+			width: 90px;
+		}
+		table th:nth-child(7){
+			width: 60px;
+		}
+	</style>
 	<section>
 		<div>
 			<table border="1">
@@ -16,7 +32,7 @@
 				<c:choose>
 					<c:when test="${empty reportList}">
 						<tr>
-							<td colspan="7">독서록자료가 없음</td>
+							<td colspan="7">작성된 독서록이 없음</td>
 						</tr>
 					</c:when>
 					<c:otherwise>
