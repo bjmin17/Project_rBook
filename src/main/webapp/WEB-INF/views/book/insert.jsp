@@ -9,45 +9,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>도서정보 등록</title>
-<style>
-	fieldset{
-		width:70%;
-		margin:20px auto;
-		border:1px solid black;
-		border-radius: 10px;
-	}
-	legend {
-		font-weight: bold;
-		font-size: 20px;
-	}
-	input, textarea{
-		display:inline-block;
-		width:90%;
-		padding:8px;
-		margin:5px;
-		border-radius: 20px;
-	}
-	input:focus, textarea:focus, button{
-		border:2px solid blue;
-		outline:none;
-		
-	}
-	a {
-		text-decoration: none;
-		color:black;
-	}
-	#btn-save{
-		border-radius: 3px;
-		padding:5px 11px;
-		color:white;
-		display: inline-block;
-		background-color: black;
-		border : 1px solid #56819d;
-		vertical-align: middle;
-		text-decoration: none;
-		margin: 10px;
-	}
-</style>
+<link href="${rootPath}/css/home.css?version=2020-01-17-001" type="text/css" rel="stylesheet">
+<link href="${rootPath}/css/insert.css?version=2020-01-17-001" type="text/css" rel="stylesheet">
 </head>
 <body>
 	<fieldset>

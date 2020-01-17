@@ -9,6 +9,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>회원가입</title>
+<link href="${rootPath}/css/user-insert.css?version=2020-01-17-001" type="text/css" rel="stylesheet">
 <script>
 $(function(){
 	$("#m_id").keypress(function(e){
@@ -25,71 +26,8 @@ $(function(){
 		})
 		
 	})
-	
-	
-	
 })
 </script>
-<style>
-	fieldset{
-		width:70%;
-		margin:20px auto;
-		border:1px solid black;
-		border-radius: 10px;
-	}
-	legend {
-		font-weight: bold;
-		font-size: 20px;
-	}
-	input, textarea{
-		display:inline-block;
-		width:90%;
-		padding:8px;
-		margin:5px;
-		border-radius: 20px;
-	}
-	input:focus, textarea:focus, button{
-		border:2px solid blue;
-		outline:none;
-	}
-	
-	input:hover{
-		background-color: #ddd;
-		border:2px solid red;
-	}
-	
-	.in-error{
-		display:inline-block;
-		margin-left:20px;
-		font-size: 12px; 
-		font-weight:bold;
-		color:red;
-	}
-	
-	span#u_id_msg{
-		display:none;
-	}
-	
-	#u_id {
-		width:70%;
-	}
-	
-	a {
-		text-decoration: none;
-		color: black;
-	}
-	#btn-save{
-		border-radius: 3px;
-		padding:5px 11px;
-		color:white;
-		display: inline-block;
-		background-color: black;
-		border : 1px solid #56819d;
-		vertical-align: middle;
-		text-decoration: none;
-		margin: 10px;
-	}
-</style>
 </head>
 <body>
 <fieldset>

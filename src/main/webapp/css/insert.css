@@ -1,0 +1,50 @@
+@charset "UTF-8";
+	fieldset{
+		width:70%;
+		margin:20px auto;
+		border:1px solid black;
+		border-radius: 10px;
+	}
+	legend {
+		font-weight: bold;
+		font-size: 20px;
+	}
+	/*, textarea*/
+	input{
+		display:inline-block;
+		width:90%;
+		padding:8px;
+		margin:5px;
+		border-radius: 20px;
+	}
+	input:focus, textarea:focus, button{
+		border:2px solid blue;
+		outline:none;
+	}
+	legend a {
+		text-decoration: none;
+		color:black;
+	}
+	#btn-save{
+		border-radius: 3px;
+		padding:5px 11px;
+		color:white;
+		display: inline-block;
+		background-color: black;
+		border : 1px solid #56819d;
+		vertical-align: middle;
+		text-decoration: none;
+		margin: 10px;
+	}
+	#rb-text{
+		height: 400px;
+		overflow: scroll;
+	}
+	textarea{
+		display:inline-block;
+		width:90%;
+		height: 300px;
+		padding:8px;
+		margin:5px;
+		border-radius: 20px;
+	}

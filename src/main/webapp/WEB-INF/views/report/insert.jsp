@@ -9,57 +9,40 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>독서록 등록</title>
-<style>
-	fieldset{
-		width:70%;
-		margin:20px auto;
-		border:1px solid black;
-		border-radius: 10px;
-	}
-	legend {
-		font-weight: bold;
-		font-size: 20px;
-	}
-	/*, textarea*/
-	input{
-		display:inline-block;
-		width:90%;
-		padding:8px;
-		margin:5px;
-		border-radius: 20px;
-	}
-	input:focus, textarea:focus, button{
-		border:2px solid blue;
-		outline:none;
-	}
-	a {
-		text-decoration: none;
-		color:black;
-	}
-	#btn-save{
-		border-radius: 3px;
-		padding:5px 11px;
-		color:white;
-		display: inline-block;
-		background-color: black;
-		border : 1px solid #56819d;
-		vertical-align: middle;
-		text-decoration: none;
-		margin: 10px;
-	}
-	#rb-text{
-		height: 400px;
-		overflow: scroll;
-	}
-	textarea{
-		display:inline-block;
-		width:90%;
-		height: 300px;
-		padding:8px;
-		margin:5px;
-		border-radius: 20px;
-	}
-</style>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<link href="${rootPath}/css/insert.css?version=2020-01-17-001" type="text/css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.15/dist/summernote-lite.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.15/dist/summernote-lite.js"></script>
+<script src="${rootPath}/js/summernote-ko-KR.js"></script>
+<script>
+$(function(){
+	var toolbar = [
+		
+		['style', ['bold','italic','underline']],
+		['fontsize',['fontsize']],
+		['font Style',['fontname']],
+		['color',['color']],
+		['para',['ul','ol','paragraph']],
+		['height',['height']],
+		['table',['table']],
+		['insert',['link','picture','hr']],
+		['view',['fullscreen','codeview']]
+		
+	]
+	
+	$("#rb_text").summernote({
+		
+		lang:'ko-KR',
+		placeholder: '본문을 입력하세요',
+		width:'100%',
+		toolbar:toolbar,
+		height:'200px',
+		disableDragAndDrop: true
+		
+	})
+	
+})
+</script>
 </head>
 <body>
 	<fieldset>
@@ -87,12 +70,11 @@
 				<label>별점</label><br/><input type="number" min="0" max="5" name="rb_star" id="rb_star" value="${reportDTO.rb_star}">
 			</div>
 			<div>
-				<label>긴줄소감</label><br/><textarea name="rb_text" id="rb_text" value="${reportDTO.rb_text}"></textarea>
+				<label>긴줄소감</label><br/><textarea name="rb_text" id="rb_text"></textarea>
 			</div>
 			<button id="btn-save" >저장</button>
 		</form>
 		<%/* 
-		
 		<form:form modelAttribute="reportDTO" class="book-form">
 			<form:input path="rb_bcode" class="in-box" placeholder="도서코드"/><br/>
 			<form:input path="rb_date" class="in-box" placeholder="오늘날짜 등록할거면 입력 안 해도 됩니다."/><br/>
