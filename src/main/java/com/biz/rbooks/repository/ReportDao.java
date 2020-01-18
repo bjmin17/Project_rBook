@@ -11,6 +11,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.UpdateProvider;
 
 import com.biz.rbooks.domain.BookVO;
+import com.biz.rbooks.domain.PageDTO;
 import com.biz.rbooks.domain.ReportDTO;
 
 public interface ReportDao {
@@ -52,4 +53,10 @@ public interface ReportDao {
 	// 코드 한개를 매개변수로 받아서 삭제를 실현하는 메서드
 	@Delete("DELETE FROM tbl_read_book WHERE rb_seq = #{rb_seq,jdbcType=VARCHAR}")
 	public int delete(String rb_seq);
+
+	@Select("SELECT count(*) FROM tbl_read_book")
+	public long reportTotalCount();
+
+	@Select(ReportSQL.pagination_sql)
+	public List<ReportDTO> selectPagination(PageDTO pageDTO);
 }

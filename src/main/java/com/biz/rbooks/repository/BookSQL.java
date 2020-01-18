@@ -45,4 +45,25 @@ public class BookSQL {
 		}}.toString();
 	}
 	
+	public final static String pagination_sql = 
+			"<script>"
+					+ " SELECT * FROM ( " 
+							+ " SELECT /*+ FIRST_ROWS_100 */ROWNUM AS NUM, IP.*FROM "
+							+ " ( SELECT /*+ INDEX_DESC(P) */ * FROM tbl_books B"
+							+ " ) IP"
+							+ " WHERE ROWNUM &lt; = ${limit}"
+							+ " ) TBL"
+							+ " WHERE NUM &gt; = #{offset}"
+			+ "</script>";
+	public final static String findByBNames_sql = 
+			"<script>"
+				+ " SELECT * FROM tbl_books "
+					+ " <where> "
+			 		+ " <foreach collection='names' item='bVO' separator='OR'> "
+			 		+ "	b_name LIKE '%' || #{bVO} || '%' "
+			 		+ " </foreach> "
+			 		+ "</where>"			
+			+"</script>";
 }
+
+			

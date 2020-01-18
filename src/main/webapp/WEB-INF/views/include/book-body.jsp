@@ -14,10 +14,142 @@
 	table th:nth-child(6){
 		width:90px;
 	}
+		#modal-box {
+		display:none;
+		position: fixed;
+		z-index:5;
+		padding-top: 0;
+		
+		left:0;
+		top:0;
+		
+		background-color: rgba(0,0,0,0.4);
+		width: 100%;
+		height: 100%;
+	}	
+	.modal-header {
+	display: flex;
+	}
+.modal-header span{
+	color: white;
+	font-size:30px;
+	font-weight: bold;
+	margin-left: auto;
+	margin-right: 10px;
+	
+}
+
+.modal-header span:hover {
+	cursor: pointer;
+	color:#000;
+}
+
+#modal-content{
+	
+	position:relative;
+	overflow: auto;
+	width: 80%;
+	margin: 0 auto;
+
+	height : 80%;
+	background-color:gray;
+	padding:5px 10px;
+	border-radius:20px;
+		
+	animation-name : book-box;
+	animation-duration : 0.8s;
+	animation-fill-mode : forwards;
+	
+	-webkit-animation-name : book-box;
+	-webkit-animation-duration : 0.8s;
+	
+	-moz-animation-name : book-box;
+	-moz-animation-duration : 0.8s;
+	
+	-ms-animation-name : book-box;
+	-ms-animation-duration : 0.8s;
+}
+
+
+@keyframes book-box{
+	from{
+		top: -400px;
+		opacity: 0;
+	}
+	to{
+		top: 50px;
+		opacity: 1;
+	}
+}
+@-webkit-keyframes book-box{
+	from{
+		top: -400px;
+		opacity: 0;
+	}
+	to{
+		top: 50px;
+		opacity: 1;
+	}
+}	
+@-moz-keyframes book-box{
+	from{
+		top: -400px;
+		opacity: 0;
+	}
+	to{
+		top: 50px;
+		opacity: 1;
+	}
+}	
+@-ms-keyframes book-box{
+	from{
+		top: -400px;
+		opacity: 0;
+	}
+	to{
+		top: 50px;
+		opacity: 1;
+	}
+}	
+#search-table {
+	
+	background-color: white;
+	border-collapse: collapse;
+	width: 85%;
+	
+	margin: 10px auto;
+	border-bottom: 1px solid #ddd;	
+	
+	height: 100%;
+	
+}
+
+#search-table td, #search-table th{
+	white-space: nowrap;
+	text-align: left;
+	padding: 8px;
+	vertical-align: top;
+}
 	</style>
-	<section>
+	<script>
+	$(function(){
+		
+		$("#search-table tr").click(function(){
+		
+			let trs = $(this).children()	
+			let b_code = trs.eq(0).text()
+			let b_name = trs.eq(1).text()
+			
+			$("#rb_bcode").val(b_code)
+			$("#rb_bname").val(b_name)
+			
+			$("#modal-box").css("display","none")
+		})
+	})
+	</script>
+	<section id="search-list">
 		<div>
-			<table border="1">
+			<table id="search-table"border="1">
 				<tr>
 					<th>도서코드</th>
 					<th>도서명</th>
@@ -49,3 +181,8 @@
 			</table>
 		</div>
 	</section>
+	<c:if test="${BODY == 'BOOK'}">
+		<section>
+			<%@ include file = "/WEB-INF/views/include/pagination.jsp" %>
+		</section>
+	</c:if>

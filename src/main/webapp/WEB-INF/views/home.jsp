@@ -13,6 +13,14 @@
 <script	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.9.0/jquery.contextMenu.min.js"></script>
 <script	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.9.0/jquery.ui.position.min.js"></script>
 <link href="${rootPath}/css/home.css?version=2020-01-17-001" type="text/css" rel="stylesheet">
+
+<!-- 부트스트링4 -->
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <script>
 $(function(){
 	$("#btn_book").click(function(){
@@ -85,7 +93,7 @@ $(function(){
 	<c:if test = "${BODY == 'REPORT' }">
 		<%@ include file = "/WEB-INF/views/include/report-body.jsp" %>
 	</c:if>
-
+	
 
 
 </body>

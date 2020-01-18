@@ -6,12 +6,14 @@ import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.InsertProvider;
 import org.apache.ibatis.annotations.Many;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.UpdateProvider;
 
 import com.biz.rbooks.domain.BookVO;
+import com.biz.rbooks.domain.PageDTO;
 import com.biz.rbooks.domain.ReportDTO;
 
 public interface BookDao {
@@ -40,5 +42,17 @@ public interface BookDao {
 	// 코드 한개를 매개변수로 받아서 삭제를 실현하는 메서드
 	@Delete("DELETE FROM tbl_books WHERE b_code = #{b_code,jdbcType=VARCHAR}")
 	public int delete(String b_code);
+
+	/*
+	 * offset부터 limit까지의 데이터만 추출하라
+	 */
+	@Select(BookSQL.pagination_sql)
+	public List<BookVO> selectPagination(PageDTO pageDTO);
+
+	@Select("SELECT count(*) FROM tbl_books ")
+	public long bookTotalCount();
+
+	@Select(BookSQL.findByBNames_sql)
+	public List<BookVO> findByBNames(@Param("names") List<String> names);
 
 }

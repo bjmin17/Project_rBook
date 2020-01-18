@@ -1,6 +1,7 @@
 package com.biz.rbooks.service;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.biz.rbooks.domain.BookVO;
+import com.biz.rbooks.domain.PageDTO;
 import com.biz.rbooks.repository.BookDao;
 
 import lombok.extern.slf4j.Slf4j;
@@ -74,6 +76,24 @@ public class BookService {
 	public int delete(String b_code) {
 		
 		return bDao.delete(b_code);
+	}
+
+	public List<BookVO> selectPagination(PageDTO pageDTO) {
+		List<BookVO> bookVOList = bDao.selectPagination(pageDTO);
+		return bookVOList;
+	}
+
+	public long totalCount() {
+		return bDao.bookTotalCount();
+	}
+
+	public List<BookVO> findByBNames(String strText) {
+
+		List<String> names = Arrays.asList(strText.split(" "));
+		
+		List<BookVO> bookList = bDao.findByBNames(names);
+		
+		return bookList;
 	}
 	
 	

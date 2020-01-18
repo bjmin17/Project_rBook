@@ -16,6 +16,38 @@
 <script src="${rootPath}/js/summernote-ko-KR.js"></script>
 <script>
 $(function(){
+
+	$("#btn-save").click(function(){
+		$("form").submit
+	})
+	
+	// 누르면, 선택되면 전체 블록
+	$("#rb_bname").focus(function(){
+		$(this).select()
+	})
+	
+	$("#rb_bname").keypress(function(event){
+		
+		if(event.keyCode == 13) {
+			
+			let strText = $(this).val()
+			if(strText == "") {
+				
+				alert("도서이름을 입력한 후 Enter를 눌러주세요")
+				return false
+				
+			}
+			$("#modal-box").css('display','block')
+			// strText는 보낼 데이터, 여기서는 검색하고자 하는 도서명
+			$.post("${rootPath}/book/search", {strText:strText},function(result){
+				$("#modal-content").html(result)
+			})			
+		}
+	})
+	
+	$(".modal-header span").click(function(){
+		$("#modal-box").css("display","none")
+	})
 	var toolbar = [
 		
 		['style', ['bold','italic','underline']],
@@ -50,6 +82,7 @@ $(function(){
 		<form method="POST" class="book-form">
 			<div>
 				<label>도서코드</label><br/><input type="text" name="rb_bcode" id="rb_bcode" value="${reportDTO.rb_bcode}">
+				<input id="rb_bname" name="rb_bname" placeholder="도서명 검색">
 			</div>
 			<div>
 				<input type="hidden" name="rb_id" id="rb_id" value="${reportDTO.rb_id}">
@@ -61,7 +94,7 @@ $(function(){
 				<label>시작시간</label><br/><input type="text" name="rb_stime" id="rb_stime" value="${reportDTO.rb_stime}">
 			</div>
 			<div>
-				<label>읽은시간</label><br/><input type="text" name="rb_rtime" id="rb_rtime" value="${reportDTO.rb_rtime}">
+				<label>읽은시간</label><br/><input type="number" name="rb_rtime" id="rb_rtime" value="${reportDTO.rb_rtime}">
 			</div>
 			<div>
 				<label>한줄소감</label><br/><input type="text" name="rb_subject" id="rb_subject" value="${reportDTO.rb_subject}">
@@ -72,7 +105,7 @@ $(function(){
 			<div>
 				<label>긴줄소감</label><br/><textarea name="rb_text" id="rb_text"></textarea>
 			</div>
-			<button id="btn-save" >저장</button>
+			<button id="btn-save" type="button">저장</button>
 		</form>
 		<%/* 
 		<form:form modelAttribute="reportDTO" class="book-form">
@@ -88,5 +121,13 @@ $(function(){
 		*/%>
 	
 	</fieldset>
+	<div id="modal-box">
+		<div class="modal-header">
+			<span>&times;</span>
+		</div>
+		<div id="modal-content">
+		
+		</div>
+	</div>
 </body>
 </html>

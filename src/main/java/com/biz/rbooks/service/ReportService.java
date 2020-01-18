@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.biz.rbooks.domain.BookVO;
+import com.biz.rbooks.domain.PageDTO;
 import com.biz.rbooks.domain.ReportDTO;
 import com.biz.rbooks.repository.BookDao;
 import com.biz.rbooks.repository.ReportDao;
@@ -93,5 +94,14 @@ public class ReportService {
 	public int delete(String rb_seq) {
 		
 		return rDao.delete(rb_seq);
+	}
+
+	public long totalCount() {
+		return rDao.reportTotalCount();
+	}
+
+	public List<ReportDTO> selectPagination(PageDTO pageDTO) {
+		List<ReportDTO> reportDTOList = rDao.selectPagination(pageDTO);
+		return reportDTOList;
 	}
 }

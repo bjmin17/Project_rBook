@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import com.biz.rbooks.domain.BookVO;
+import com.biz.rbooks.domain.PageDTO;
 import com.biz.rbooks.domain.ReportDTO;
 import com.biz.rbooks.domain.UserDTO;
-import com.biz.rbooks.service.BookService;
+import com.biz.rbooks.service.PageService;
 import com.biz.rbooks.service.ReportService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -29,7 +29,7 @@ import lombok.extern.slf4j.Slf4j;
 public class ReportController {
 
 	private final ReportService rService;
-	private final BookService bService;
+	private final PageService pService;
 	
 	@ModelAttribute("reportDTO")
 	public ReportDTO reportDTO() {
@@ -38,22 +38,30 @@ public class ReportController {
 	}
 
 	@Autowired
-	public ReportController(ReportService rService, BookService bService) {
+	public ReportController(ReportService rService, PageService pService) {
 		super();
 		this.rService = rService;
-		this.bService = bService;
+		this.pService = pService;
 	}
 	
 	// 독서록정보 전체 리스트 보여주는 코드
 	@RequestMapping(value="/",method=RequestMethod.GET)
-	public String list(Model model, SessionStatus sStatus) {
+	public String list(
+			@RequestParam(value="currentPageNo",required = false,defaultValue = "1") int currentPageNo,
+			Model model, SessionStatus sStatus) {
 		// 서비스로부터 가져와서 bookList에 담고
 //		List<ReportDTO> reportList = rService.selectAll();
+		
+		long totalCount = rService.totalCount();
+		PageDTO pageDTO = pService.getPagination(totalCount, currentPageNo);
+		List<ReportDTO> reportPagination = rService.selectPagination(pageDTO);
+		
 		List<ReportDTO> reportList = rService.selectAll();
 		log.debug("독서록 컨트롤러 reportList : " + reportList.toString());
 		// bookList에 담은 값을 "bookList"라는 값에 담으며 jsp파일에 보내줌
 		model.addAttribute("reportList",reportList);
 //		model.addAttribute("BNAME",reportList.get(0)?.getBNameList().get(0).getB_name());
+		model.addAttribute(pageDTO);
 		model.addAttribute("BODY","REPORT");
 		
 		sStatus.setComplete();

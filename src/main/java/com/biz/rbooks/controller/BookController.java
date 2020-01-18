@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import com.biz.rbooks.domain.BookVO;
+import com.biz.rbooks.domain.PageDTO;
 import com.biz.rbooks.service.BookService;
+import com.biz.rbooks.service.PageService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -25,6 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 public class BookController {
 	
 	private final BookService bService;
+	private final PageService pService;
 	
 	// bookVO 생성자 생성
 	@ModelAttribute("bookVO")
@@ -35,24 +38,49 @@ public class BookController {
 	
 	
 	@Autowired
-	public BookController(BookService bService) {
+	public BookController(BookService bService, PageService pService) {
 		super();
 		this.bService = bService;
+		this.pService = pService;
 	}
 
 	// 도서정보 전체 리스트 보여주는 코드
 	@RequestMapping(value="/",method=RequestMethod.GET)
-	public String list(Model model, SessionStatus sStatus) {
+	public String list(
+			@RequestParam(value="currentPageNo",required = false,defaultValue = "1") int currentPageNo,
+			Model model, SessionStatus sStatus) {
+		
+		long totalCount = bService.totalCount();
+		PageDTO pageDTO = pService.getPagination(totalCount, currentPageNo);
+		List<BookVO> bookListPagiNation = bService.selectPagination(pageDTO);
+		
 		// 서비스로부터 가져와서 bookList에 담고
 		List<BookVO> bookList = bService.selectAll();
 		log.debug("리스트 : " + bookList.toString());
 		
 		// bookList에 담은 값을 "bookList"라는 값에 담으며 jsp파일에 보내줌
-		model.addAttribute("bookList",bookList);
+		model.addAttribute("bookList",bookListPagiNation);
+		
+		log.debug("로오오오오그 : " +  pageDTO.toString());
+		
+		model.addAttribute(pageDTO);
 		model.addAttribute("BODY","BOOK");
+		
 		
 		sStatus.setComplete();
 		return "home";
+		
+	}
+	
+	@RequestMapping(value="/search",method=RequestMethod.POST)
+	public String search(@RequestParam(value="strText",required = false,defaultValue = "") String strText, Model model) {
+		
+		List<BookVO> bookList = bService.findByBNames(strText);
+		
+		model.addAttribute("bookList",bookList);
+		model.addAttribute("BODY","SEARCH");
+		
+		return "include/book-body";
 		
 	}
 	
@@ -109,6 +137,7 @@ public class BookController {
 		log.debug("받아온 VO 정보 : " + bookVO.toString());
 		// bookVO를 "bookVO"라는 값으로 jsp파일에 보낸다.
 		model.addAttribute("bookVO", bookVO);
+		
 		
 		return "book/insert";
 	}

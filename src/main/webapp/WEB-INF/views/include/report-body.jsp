@@ -19,6 +19,7 @@
 	</style>
 	<section>
 		<div>
+			<h3>${userDTO.m_id}님의 독서록 리스트</h3>
 			<table border="1">
 				<tr>
 					<th>번호</th>
@@ -56,3 +57,7 @@
 			</table>
 		</div>
 	</section>
+	<section>
+		<%@ include file = "/WEB-INF/views/include/pagination-read.jsp" %>
+	</section>
+	

@@ -52,4 +52,16 @@ public class ReportSQL {
 			
 		}}.toString();
 	}
+	
+	public final static String pagination_sql = 
+			"<script>"
+					+ " SELECT * FROM ( " 
+							+ " SELECT /*+ FIRST_ROWS_100 */ROWNUM AS NUM, IP.*FROM "
+							+ " ( SELECT /*+ INDEX_DESC(P) */ * FROM tbl_read_book R"
+							+ " ) IP"
+							+ " WHERE ROWNUM &lt; = ${limit}"
+							+ " ) TBL"
+							+ " WHERE NUM &gt; = #{offset}"
+			+ "</script>";
+	
 }
