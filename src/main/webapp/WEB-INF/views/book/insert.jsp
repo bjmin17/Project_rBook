@@ -18,7 +18,7 @@
 		
 		<form method="POST" class="book-form">
 			<div>
-				<label>도서코드</label><br/><input type="text" name="b_code" id="b_code" value="${bookVO.b_code}">
+				<label>도서코드(13자리, 000-00-000000-0-0)</label><br/><input type="text" name="b_code" id="b_code" value="${bookVO.b_code}">
 			</div>
 			<div>
 				<label>도서명</label><br/><input type="text" name="b_name" id="b_name" value="${bookVO.b_name}">
@@ -30,7 +30,7 @@
 				<label>출판사</label><br/><input type="text" name="b_comp" id="b_comp" value="${bookVO.b_comp}">
 			</div>
 			<div>
-				<label>출판연도</label><br/><input type="date" name="b_year" id="b_year" value="${bookVO.b_year}">
+				<label>출판연도(MM-DD-YYYY)</label><br/><input type="date" name="b_year" id="b_year" value="${bookVO.b_year}">
 			</div>
 			<div>
 				<label>가격</label><br/><input type="number" name="b_iprice" id="b_iprice" value="${bookVO.b_iprice}">
