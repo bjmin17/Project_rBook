@@ -105,7 +105,7 @@ $(function(){
 			<div>
 				<label>긴줄소감</label><br/><textarea name="rb_text" id="rb_text"></textarea>
 			</div>
-			<button id="btn-save" type="button">저장</button>
+			<button id="btn-save" type="submit">저장</button>
 		</form>
 		<%/* 
 		<form:form modelAttribute="reportDTO" class="book-form">

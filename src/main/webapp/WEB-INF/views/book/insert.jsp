@@ -11,6 +11,11 @@
 <title>도서정보 등록</title>
 <link href="${rootPath}/css/home.css?version=2020-01-17-001" type="text/css" rel="stylesheet">
 <link href="${rootPath}/css/insert.css?version=2020-01-17-001" type="text/css" rel="stylesheet">
+<style>
+	#btn-save:hover {
+		cursor: pointer;
+	}
+</style>
 </head>
 <body>
 	<fieldset>

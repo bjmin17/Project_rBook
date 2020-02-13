@@ -28,7 +28,7 @@ $(function(){
 	})
 	
 	$("#btn-delete").click(function(){
-		if(confirm("메모를 삭제합니다!!!")) {
+		if(confirm("도서 정보를 삭제합니다!!!")) {
 			/*
 			현재 페이지를 지우고, 새로운 페이지로 다시 그려라
 			뒤로가기를 하면 엉뚱한 페이지(history에 저장된)로 이동

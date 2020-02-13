@@ -19,8 +19,17 @@ header {
 h3 {
 	text-align: center;
 	background-color:inherit; 
-	
+	text-decoration: none;
+		
 }
+h3 a {
+	color:white;
+	text-decoration: none;
+}
+
+
+
+
 
 table {
 	width:70%;
@@ -58,9 +67,9 @@ table tr:nth-child(odd){
 table a {
 	text-decoration: none;
 }
-h3 a {
-	text-decoration: none;
+h3 a:hover {
 	color:white;
+	text-decoration: none;
 }
 
 .list-body:hover{
@@ -103,4 +112,9 @@ div.btn-box{
 .paginationDiv{
 	width:70%;
 	display: flex;
+}
+
+div.searchForm form {
+	display: block;
+	text-align: center;
 }

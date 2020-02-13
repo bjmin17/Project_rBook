@@ -49,14 +49,76 @@ public class BookController {
 	public String list(
 			@RequestParam(value="currentPageNo",required = false,defaultValue = "1") int currentPageNo,
 			Model model, SessionStatus sStatus) {
+//		log.debug("서치필드 값 : " + searchField);
+//		List<BookVO> bookListPagiNation = null;
+////		String searchField = null;
+//		if(searchField.equalsIgnoreCase("allList")) {
+//			// 서비스에서 allList일 때 작동할거 만들어주기
+//			bookListPagiNation = bService.selectAllSearch(searchField, search);
+//		} else if(searchField.equalsIgnoreCase("title")) {
+//			// 제목으로만 검색했을 때
+//			bookListPagiNation = bService.selectTitle(search);
+//		} else if(searchField.equalsIgnoreCase("auth")) {
+//			// 저자로 검색했을 때
+//			bookListPagiNation = bService.selectAuth(search);
+//		} else if(search.trim() == null || search.isEmpty()) {
+////			bookListPagiNation = bService.selectAll();
+//		} else {
+//			bookListPagiNation = bService.selectAllSearch(searchField, search);
+//		}
 		
 		long totalCount = bService.totalCount();
 		PageDTO pageDTO = pService.getPagination(totalCount, currentPageNo);
 		List<BookVO> bookListPagiNation = bService.selectPagination(pageDTO);
+//		
+//		// 서비스로부터 가져와서 bookList에 담고
+//		List<BookVO> bookList = bService.selectAll();
+//		log.debug("리스트 : " + bookList.toString());
 		
-		// 서비스로부터 가져와서 bookList에 담고
-		List<BookVO> bookList = bService.selectAll();
-		log.debug("리스트 : " + bookList.toString());
+		// bookList에 담은 값을 "bookList"라는 값에 담으며 jsp파일에 보내줌
+		model.addAttribute("bookList",bookListPagiNation);
+		
+		log.debug("로오오오오그 : " +  pageDTO.toString());
+		
+		model.addAttribute(pageDTO);
+		model.addAttribute("BODY","BOOK");
+		
+		
+		sStatus.setComplete();
+		return "home";
+		
+	}
+	
+	// 도서정보 전체 리스트 보여주는 코드
+	@RequestMapping(value="/",method=RequestMethod.POST)
+	public String list(
+			@RequestParam(value="currentPageNo",required = false,defaultValue = "1") int currentPageNo,
+			Model model, SessionStatus sStatus, String searchField, String search) {
+		log.debug("서치필드 값 : " + searchField);
+		List<BookVO> bookListPagiNation = null;
+//		String searchField = null;
+		if(searchField.equalsIgnoreCase("allList")) {
+			// 서비스에서 allList일 때 작동할거 만들어주기
+			bookListPagiNation = bService.selectAllSearch(searchField, search);
+		} else if(searchField.equalsIgnoreCase("title")) {
+			// 제목으로만 검색했을 때
+			bookListPagiNation = bService.selectTitle(search);
+		} else if(searchField.equalsIgnoreCase("auth")) {
+			// 저자로 검색했을 때
+			bookListPagiNation = bService.selectAuth(search);
+		} else if(search.trim() == null || search.isEmpty()) {
+//			bookListPagiNation = bService.selectAll();
+		} else {
+			bookListPagiNation = bService.selectAllSearch(searchField, search);
+		}
+		
+		long totalCount = bService.totalCount();
+		PageDTO pageDTO = pService.getPagination(totalCount, currentPageNo);
+//		bookListPagiNation = bService.selectPagination(pageDTO);
+//		
+//		// 서비스로부터 가져와서 bookList에 담고
+//		List<BookVO> bookList = bService.selectAll();
+//		log.debug("리스트 : " + bookList.toString());
 		
 		// bookList에 담은 값을 "bookList"라는 값에 담으며 jsp파일에 보내줌
 		model.addAttribute("bookList",bookListPagiNation);

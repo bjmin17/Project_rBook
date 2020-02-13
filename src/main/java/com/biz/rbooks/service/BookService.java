@@ -96,6 +96,31 @@ public class BookService {
 		return bookList;
 	}
 	
+	public List<BookVO> selectAllSearch(String searchField, String search) {
+
+		BookVO bookVO = BookVO.builder()
+								.b_name(search)
+								.b_auther(search)
+								.build();
+		return bDao.findByAll(bookVO);
+	}
+	public List<BookVO> selectTitle(String search) {
+		BookVO bookVO = BookVO.builder()
+								.b_name(search)
+								.build();
+		return bDao.findByTitle(bookVO);
+	}
+	public List<BookVO> selectAuth(String search) {
+		BookVO bookVO = BookVO.builder()
+								.b_auther(search)
+								.build();
+		return bDao.findByAuth(bookVO);
+	}
+	public List<BookVO> selectFiveList() {
+
+		return bDao.selectFiveList();
+	}
+	
 	
 	
 	

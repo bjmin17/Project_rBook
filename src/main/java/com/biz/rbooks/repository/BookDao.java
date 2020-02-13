@@ -55,4 +55,19 @@ public interface BookDao {
 	@Select(BookSQL.findByBNames_sql)
 	public List<BookVO> findByBNames(@Param("names") List<String> names);
 
+	@Select("SELECT * FROM tbl_books WHERE b_name LIKE '%' || #{b_name} || '%' OR b_auther LIKE '%' || #{b_auther} || '%' ")
+	public List<BookVO> findByAll(BookVO bookVO);
+
+	@Select("SELECT * FROM tbl_books WHERE b_name LIKE '%' || #{b_name} || '%' ")
+	public List<BookVO> findByTitle(BookVO bookVO);
+
+	@Select("SELECT * FROM tbl_books WHERE b_auther LIKE '%' || #{b_auther} || '%' ")
+	public List<BookVO> findByAuth(BookVO bookVO);
+
+	@Select("SELECT * FROM tbl_books")
+	public List<BookVO> selectFiveList();
+
+
+
+	
 }
