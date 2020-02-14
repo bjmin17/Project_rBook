@@ -32,8 +32,8 @@ $(function(){
 <body>
 <fieldset>
 	<legend>
-		<a href="${rootPath}/report/"><c:if test="${TITLE == null }">회원가입</c:if></a>
-		<a href="${rootPath}/report/"><c:if test="${TITLE != null }">${TITLE}</c:if></a>
+		<a href="${rootPath}/book/"><c:if test="${TITLE == null }">회원가입</c:if></a>
+		<a href="${rootPath}/book/"><c:if test="${TITLE != null }">${TITLE}</c:if></a>
 	</legend>
 
 	<form:form modelAttribute="userDTO" autocomplete="on" class="memo-form">

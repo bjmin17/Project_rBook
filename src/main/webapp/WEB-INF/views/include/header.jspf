@@ -2,5 +2,5 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <header>
-	<h3><a href="${rootPath}/report/">독서록정보</a></h3>
+	<h3><a href="${rootPath}/book/">독서록정보</a></h3>
 </header>

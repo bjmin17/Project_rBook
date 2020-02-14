@@ -91,6 +91,17 @@ $(function(){
 <%@ include file="/WEB-INF/views/include/header.jspf" %>
 <%@ include file="/WEB-INF/views/include/nav.jspf" %>
 	<c:if test = "${BODY == 'BOOK' }">
+		<div class="searchForm">
+			<form>
+				<select name="searchField">
+					<option value="allList" selected="selected">전체</option>
+					<option value="title">제목</option>
+					<option value="auth">저자</option>
+				</select>
+				<input id="search" name="search" type="text" placeholder="내용 입력...">
+				<button>검색</button>
+			</form>
+		</div>
 		<%@ include file = "/WEB-INF/views/include/book-body.jsp" %>
 	</c:if>
 	<c:if test = "${BODY == 'REPORT' }">

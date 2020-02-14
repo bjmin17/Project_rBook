@@ -58,10 +58,11 @@ public class ReportSQL {
 					+ " SELECT * FROM ( " 
 							+ " SELECT /*+ FIRST_ROWS_100 */ROWNUM AS NUM, IP.*FROM "
 							+ " ( SELECT /*+ INDEX_DESC(P) */ * FROM tbl_read_book R"
+							+ " WHERE RB_ID = #{userId} "
 							+ " ) IP"
-							+ " WHERE ROWNUM &lt; = ${limit}"
+							+ " WHERE ROWNUM &lt; = #{pageDTO.limit,jdbcType=VARCHAR}"
 							+ " ) TBL"
-							+ " WHERE NUM &gt; = #{offset}"
+							+ " WHERE NUM &gt; = #{pageDTO.offset,jdbcType=VARCHAR}"
 			+ "</script>";
 	
 }

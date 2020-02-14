@@ -54,7 +54,7 @@ public class BookController {
 			Model model, SessionStatus sStatus, 
 			@RequestParam(value = "searchField",required = false, defaultValue = "allList") String searchField, 
 			@RequestParam(value = "search",required = false, defaultValue = "") String search) {
-		log.debug("서치필드 값 : " + searchField);
+
 		List<BookVO> bookListPagiNation = null;
 		PageDTO pageDTO = null;
 		long totalCount = 0;
@@ -66,9 +66,8 @@ public class BookController {
 			// 제목+저자
 			totalCount = bService.selectSearchAllTotal(search);
 			pageDTO = pService.getPagination(totalCount, currentPageNo);
-			log.debug("북컨트롤러" + pageDTO.toString());
 			
-			bookListPagiNation = bService.selectAllSearch(searchField, search, pageDTO);
+			bookListPagiNation = bService.selectAllSearch(search, pageDTO);
 			
 		} else if(searchField.equalsIgnoreCase("title")) {
 			// 제목으로만 검색했을 때
@@ -87,20 +86,20 @@ public class BookController {
 //			bookListPagiNation = bService.selectAllSearch(searchField, search);
 			totalCount = bService.totalCount();
 			pageDTO = pService.getPagination(totalCount, currentPageNo);
-			bookListPagiNation = bService.selectAllSearch(searchField, search, pageDTO);
+			bookListPagiNation = bService.selectAllSearch(search, pageDTO);
 			
 		} else {
 			// 나머지
 //			bookListPagiNation = bService.selectAllSearch(searchField, search);
 			totalCount = bService.totalCount();
 			pageDTO = pService.getPagination(totalCount, currentPageNo);
-			bookListPagiNation = bService.selectAllSearch(searchField, search, pageDTO);
+			bookListPagiNation = bService.selectAllSearch(search, pageDTO);
 		}
 		
 		if(totalCount < 1) {
 			totalCount = 1;
 			pageDTO = pService.getPagination(totalCount, currentPageNo);
-			bookListPagiNation = bService.selectAllSearch(searchField, search, pageDTO);
+			bookListPagiNation = bService.selectAllSearch(search, pageDTO);
 		}
 		
 //		bookListPagiNation = bService.selectPagination(pageDTO);
@@ -178,12 +177,10 @@ public class BookController {
 	// 도서정보 수정 메서드, 주소 값의 id를 가져와서
 	@RequestMapping(value="/update",method=RequestMethod.GET)
 	public String update(String id, @ModelAttribute("bookVO") BookVO bookVO, Model model) {
-		log.debug("변경할 도서 코드 : " + id);
 		
 		// 특정 도서의 정보를 가져오는 메서드를 실현하고
 		// 그 결과 값을 bookVO에 담는다.
 		bookVO = bService.getBook(id);
-		log.debug("받아온 VO 정보 : " + bookVO.toString());
 		// bookVO를 "bookVO"라는 값으로 jsp파일에 보낸다.
 		model.addAttribute("bookVO", bookVO);
 		
@@ -198,13 +195,10 @@ public class BookController {
 		
 		// 원래 코드 값을 저장하는 변수
 		String originBCode = bookVO.getB_code(); 
-		log.debug("바꾼 도서 코드 : " + bookVO.getB_code());
-		log.debug("바꾼 VO 정보 : " + bookVO.toString());
 		
 		// 북서비스의 업데이트를 실현한다.
 		int ret = bService.update(bookVO);
 		
-		log.debug("변경한 도서 코드 : " + bookVO.getB_code());
 		
 		// 서비스에서 코드를 변경할 경우,
 		// 코드가 바뀌지 않도록 원래 코드 값을 저장해주기
@@ -221,7 +215,6 @@ public class BookController {
 	// 그에 해당하는 데이터를 삭제하기
 	@RequestMapping(value="/delete",method=RequestMethod.GET)
 	public String delete(@RequestParam("id") String str_Seq) {
-		log.debug("삭제할 도서 코드: " + str_Seq);
 		// 서비스의 delete 메서드를 실행하기 
 		int ret = bService.delete(str_Seq);
 		return "redirect:/book/";

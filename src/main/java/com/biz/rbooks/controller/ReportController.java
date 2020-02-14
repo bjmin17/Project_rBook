@@ -48,20 +48,29 @@ public class ReportController {
 	@RequestMapping(value="/",method=RequestMethod.GET)
 	public String list(
 			@RequestParam(value="currentPageNo",required = false,defaultValue = "1") int currentPageNo,
-			Model model, SessionStatus sStatus) {
+			Model model, SessionStatus sStatus, 
+			HttpSession httpSession) {
 		// 서비스로부터 가져와서 bookList에 담고
 //		List<ReportDTO> reportList = rService.selectAll();
+		String userId = null;
+		long totalCount = 0;
 		
-		long totalCount = rService.totalCount();
+		if(httpSession != null) {
+			UserDTO userDTO = (UserDTO) httpSession.getAttribute("userDTO");
+			userId = userDTO.getM_id();
+		}
+		totalCount = rService.totalCount(userId);
+		
 		PageDTO pageDTO = pService.getPagination(totalCount, currentPageNo);
-		List<ReportDTO> reportPagination = rService.selectPagination(pageDTO);
+//		List<ReportDTO> reportPagination = rService.selectPagination(pageDTO);
 		
-		List<ReportDTO> reportList = rService.selectAll();
-		log.debug("독서록 컨트롤러 reportList : " + reportList.toString());
+		List<ReportDTO> reportList = rService.selectAll(userId, pageDTO);
 		// bookList에 담은 값을 "bookList"라는 값에 담으며 jsp파일에 보내줌
 		model.addAttribute("reportList",reportList);
 //		model.addAttribute("BNAME",reportList.get(0)?.getBNameList().get(0).getB_name());
-		model.addAttribute(pageDTO);
+		if(pageDTO != null) {
+			model.addAttribute(pageDTO);
+		}
 		model.addAttribute("BODY","REPORT");
 		
 		sStatus.setComplete();
@@ -86,7 +95,6 @@ public class ReportController {
 			SessionStatus sStatus, HttpSession httpSession) {
 		
 		UserDTO userDTO = (UserDTO) httpSession.getAttribute("userDTO");
-		log.debug("***로그인 되어있는 아이디 : " + userDTO.getM_id());
 		reportDTO.setRb_id(userDTO.getM_id());
 		
 //		 도서정보 불러온 값을 rDTO에 저장, 도서명 나오기 위해
@@ -142,8 +150,6 @@ public class ReportController {
 	public String update(@ModelAttribute("reportDTO") ReportDTO reportDTO, Model model,
 			SessionStatus sStatus) {
 		
-		log.debug("report컨트롤러에서 받은 날짜 값 : " + reportDTO.getRb_date());
-		
 		// 독서록서비스의 업데이트를 실현한다.
 		int ret = rService.update(reportDTO);
 		
@@ -157,7 +163,6 @@ public class ReportController {
 	// 그에 해당하는 데이터를 삭제하기
 	@RequestMapping(value="/delete",method=RequestMethod.GET)
 	public String delete(@RequestParam("id") String str_Seq) {
-		log.debug("삭제할 도서 코드: " + str_Seq);
 		// 서비스의 delete 메서드를 실행하기 
 		int ret = rService.delete(str_Seq);
 		return "redirect:/report/";

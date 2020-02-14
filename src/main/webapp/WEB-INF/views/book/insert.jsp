@@ -19,7 +19,7 @@
 </head>
 <body>
 	<fieldset>
-		<legend><a href="${rootPath}/report/">도서정보 등록</a></legend>
+		<legend><a href="${rootPath}/book/">도서정보 등록</a></legend>
 		
 		<form method="POST" class="book-form">
 			<div>

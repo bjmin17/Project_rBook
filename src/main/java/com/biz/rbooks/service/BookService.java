@@ -96,7 +96,7 @@ public class BookService {
 		return bookList;
 	}
 	
-	public List<BookVO> selectAllSearch(String searchField, String search, PageDTO pageDTO) {
+	public List<BookVO> selectAllSearch(String search, PageDTO pageDTO) {
 
 		BookVO bookVO = BookVO.builder()
 								.b_name(search)
@@ -118,15 +118,15 @@ public class BookService {
 		return bDao.findByTitle(bookVO, pageDTO);
 	}
 	
-	public long selectSearchTitleTotal(String search, PageDTO pageDTO) {
-		return bDao.selectSearchTitleTotal(search, pageDTO);
+	public long selectSearchTitleTotal(String search) {
+		return bDao.selectSearchTitleTotal(search);
 	}
 	
-	public List<BookVO> selectAuth(String search) {
+	public List<BookVO> selectAuth(String search, PageDTO pageDTO) {
 		BookVO bookVO = BookVO.builder()
 								.b_auther(search)
 								.build();
-		return bDao.findByAuth(bookVO);
+		return bDao.findByAuth(bookVO, pageDTO);
 	}
 	
 	public long selectSearchAuthTotal(String search) {

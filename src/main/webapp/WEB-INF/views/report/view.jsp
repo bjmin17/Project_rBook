@@ -47,7 +47,7 @@ $(function(){
 </script>
 <body>
 	<table>
-		<caption><a href="${rootPath}/report/">독서록정보 상세</a></caption>
+		<caption><a href="${rootPath}/book/">독서록정보 상세</a></caption>
 		<tr>
 			<th>일련번호</th><td>${reportDTO.rb_seq}</td>
 			<th>도서코드</th><td class="book_link" data-id="book_link">${reportDTO.rb_bcode}</td>

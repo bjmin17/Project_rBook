@@ -79,7 +79,7 @@ public class UserController {
 		} else {
 			// 에러가 발생하지 않으면 유저서비스의 회원가입 메서드를 실행
 			int ret = uService.userJoin(userDTO);
-			return "redirect:/report/";
+			return "redirect:/book/";
 		}
 		
 	}

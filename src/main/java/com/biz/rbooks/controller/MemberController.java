@@ -64,8 +64,6 @@ public class MemberController {
 	public String login(@ModelAttribute UserDTO userDTO, Model model,
 			HttpSession httpSession) {
 		
-		log.debug("멤버컨트롤러 유저DTO : " + userDTO.toString());
-//		log.debug("멤버컨트롤러 바디 : " + BODY);
 		// member 폴더의 login.jsp에서 가져온 userDTO 내의
 		// id와 password를 가지고 
 		// 유저 서비스에 있는 로그인 체크하는 메서드를 실행한다.
@@ -103,7 +101,7 @@ public class MemberController {
 		// 로그아웃을 위해 저장되어있는 값을 remove 해준다 
 		httpSession.removeAttribute("userDTO");
 		
-		return "redirect:/report/";
+		return "redirect:/book/";
 	}
 	
 	

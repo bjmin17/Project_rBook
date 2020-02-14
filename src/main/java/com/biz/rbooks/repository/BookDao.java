@@ -64,13 +64,13 @@ public interface BookDao {
 	public long selectSearchAllTotal(String search);
 	
 	@Select(BookSQL.searchTitleTotal)
-	public List<BookVO> findByTitle(BookVO bookVO, PageDTO pageDTO);
+	public List<BookVO> findByTitle(@Param("bookVO") BookVO bookVO, @Param("pageDTO") PageDTO pageDTO);
 
 	@Select("SELECT count(*) FROM tbl_books WHERE b_name LIKE '%' || #{b_name} || '%' ")
-	public long selectSearchTitleTotal(String search, PageDTO pageDTO);
+	public long selectSearchTitleTotal(String search);
 	
 	@Select(BookSQL.searchAuthTotal)
-	public List<BookVO> findByAuth(BookVO bookVO);
+	public List<BookVO> findByAuth(@Param("bookVO") BookVO bookVO, @Param("pageDTO") PageDTO pageDTO);
 
 	@Select("SELECT count(*) FROM tbl_books WHERE b_auther LIKE '%' || #{b_auther} || '%' ")
 	public long selectSearchAuthTotal(String search);

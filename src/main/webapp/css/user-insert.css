@@ -57,3 +57,6 @@
 		text-decoration: none;
 		margin: 10px;
 	}
+	#btn-save:hover {
+		cursor: pointer;
+	}

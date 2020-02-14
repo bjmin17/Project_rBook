@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.InsertProvider;
 import org.apache.ibatis.annotations.Many;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
@@ -18,7 +19,7 @@ public interface ReportDao {
 
 	// 모든 독서록리스트를 보여주는 메서드와 SQL문
 	
-	@Select("SELECT * FROM tbl_read_book")
+	@Select(ReportSQL.pagination_sql)
 	@Results(
 	value = {
 			
@@ -29,7 +30,7 @@ public interface ReportDao {
 					)
 	}
 	)
-	public List<ReportDTO> selectAll();
+	public List<ReportDTO> selectAll(@Param("userId") String userId, @Param("pageDTO") PageDTO pageDTO);
 	
 	@Select("SELECT * FROM tbl_books WHERE b_code = #{b_code}")
 	public BookVO getBooks(String b_code);
@@ -54,8 +55,8 @@ public interface ReportDao {
 	@Delete("DELETE FROM tbl_read_book WHERE rb_seq = #{rb_seq,jdbcType=VARCHAR}")
 	public int delete(String rb_seq);
 
-	@Select("SELECT count(*) FROM tbl_read_book")
-	public long reportTotalCount();
+	@Select("SELECT count(*) FROM tbl_read_book WHERE rb_id = #{userId}")
+	public long reportTotalCount(String userId);
 
 	@Select(ReportSQL.pagination_sql)
 	public List<ReportDTO> selectPagination(PageDTO pageDTO);

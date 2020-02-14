@@ -14,7 +14,7 @@ public class PageService {
 	 * pagination을 시작할 때
 	 * 한 페이지 보여질 기본값을 설정
 	 */
-	int listPerPage = 5;
+	int listPerPage = 10;
 	int pageCount = 5;
 	
 	/*

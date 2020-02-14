@@ -31,8 +31,8 @@ public class ReportService {
 	}
 	
 	// 독서록을 모두 보여주는 메서드
-	public List<ReportDTO> selectAll(){
-		return rDao.selectAll();
+	public List<ReportDTO> selectAll(String userId, PageDTO pageDTO){
+		return rDao.selectAll(userId, pageDTO);
 	}
 	
 	// 등록을 하는 메서드
@@ -96,8 +96,8 @@ public class ReportService {
 		return rDao.delete(rb_seq);
 	}
 
-	public long totalCount() {
-		return rDao.reportTotalCount();
+	public long totalCount(String userId) {
+		return rDao.reportTotalCount(userId);
 	}
 
 	public List<ReportDTO> selectPagination(PageDTO pageDTO) {

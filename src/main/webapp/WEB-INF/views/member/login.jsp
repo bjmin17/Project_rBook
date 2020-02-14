@@ -32,7 +32,7 @@ $(function(){
 		action에서 지정한 주소로 보내준다.
 	*/ %>
 	<form method="POST" action="${rootPath}/member/login" class="login-form">
-		<h2><a href="${rootPath}/report/">로그인</a></h2>
+		<h2><a href="${rootPath}/book/">로그인</a></h2>
 		
 		<% /* 
 			LOGIN_MSG의 값에 따라서 보여열을 다르게 보여준다.

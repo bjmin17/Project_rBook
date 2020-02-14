@@ -41,7 +41,7 @@ $(function(){
 </script>
 <body>
 	<table>
-		<caption><a href="${rootPath}/report/">도서정보 상세</a></caption>
+		<caption><a href="${rootPath}/book/">도서정보 상세</a></caption>
 		<tr>
 			<th>도서코드</th><td>${book.b_code}</td>
 			<th>도서명</th><td>${book.b_name}</td>

@@ -23,13 +23,13 @@ public class UserDTO {
 	// 사용자 id
 	@NotNull
 	@NotBlank
-	@Size(min=4,max=20)
+//	@Size(min=4,max=20)
 	private String m_id;//	varchar2(20)
 	
 	// 사용자 password
 	@NotNull
 	@NotBlank
-	@Size(min=8,max=20)
+//	@Size(min=8,max=20)
 	private String m_password;//	nvarchar2(125)
 	// 접속일자
 	private String m_login_date;//	nvarchar2(10)

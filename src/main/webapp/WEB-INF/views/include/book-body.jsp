@@ -148,17 +148,7 @@
 	})
 	</script>
 	<section id="search-list">
-		<div class="searchForm">
-			<form>
-				<select name="searchField">
-					<option value="allList" selected="selected">전체</option>
-					<option value="title">제목</option>
-					<option value="auth">저자</option>
-				</select>
-				<input id="search" name="search" type="text" placeholder="내용 입력...">
-				<button>검색</button>
-			</form>
-		</div>
+		
 		<div>
 			<table id="search-table"border="1">
 				<tr>

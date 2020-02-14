@@ -79,7 +79,7 @@ $(function(){
 </head>
 <body>
 	<fieldset>
-		<legend><a href="${rootPath}/report/">독서록 등록</a></legend>
+		<legend><a href="${rootPath}/book/">독서록 등록</a></legend>
 		<form method="POST" class="book-form">
 			<div>
 				<label>도서코드</label><br/><input type="text" name="rb_bcode" id="rb_bcode" value="${reportDTO.rb_bcode}">
