@@ -14,7 +14,7 @@ public class PageService {
 	 * pagination을 시작할 때
 	 * 한 페이지 보여질 기본값을 설정
 	 */
-	int listPerPage = 10;
+	int listPerPage = 5;
 	int pageCount = 5;
 	
 	/*
@@ -35,7 +35,7 @@ public class PageService {
 		if(totalCount < 1) {
 			return null;
 		}
-		
+		log.debug("페이지당 리스트 : " + listPerPage);
 		int finalPageNo = ((int)totalCount + (listPerPage - 1)) / listPerPage;
 		
 		if(currentPageNo > finalPageNo) currentPageNo = finalPageNo;

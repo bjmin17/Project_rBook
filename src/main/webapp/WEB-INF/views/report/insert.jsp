@@ -43,6 +43,7 @@ $(function(){
 				$("#modal-content").html(result)
 			})			
 		}
+		return false
 	})
 	
 	$(".modal-header span").click(function(){

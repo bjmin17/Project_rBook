@@ -149,7 +149,7 @@
 	</script>
 	<section id="search-list">
 		<div class="searchForm">
-			<form method="POST">
+			<form>
 				<select name="searchField">
 					<option value="allList" selected="selected">전체</option>
 					<option value="title">제목</option>

@@ -64,6 +64,43 @@ public class BookSQL {
 			 		+ " </foreach> "
 			 		+ "</where>"			
 			+"</script>";
+	
+	public final static String searchAllTotal = 
+			"<script>"
+					+ " SELECT * FROM ( " 
+						+ " SELECT /*+ FIRST_ROWS_100 */ROWNUM AS NUM, IP.*FROM "
+						+ " ( SELECT /*+ INDEX_DESC(P) */ * FROM tbl_books B"
+						+ " WHERE b_name LIKE '%' || #{bookVO.b_name} || '%' OR "
+						+ " b_auther LIKE '%' || #{bookVO.b_auther} || '%' "
+						+ " ) IP"
+						+ " WHERE ROWNUM &lt; = ${pageDTO.limit}"
+						+ " ) TBL"
+						+ " WHERE NUM &gt; = #{pageDTO.offset}"
+			+ "</script>";
+	
+	public final static String searchTitleTotal = 
+			"<script>"
+					+ " SELECT * FROM ( " 
+						+ " SELECT /*+ FIRST_ROWS_100 */ROWNUM AS NUM, IP.*FROM "
+						+ " ( SELECT /*+ INDEX_DESC(P) */ * FROM tbl_books B"
+						+ " WHERE b_name LIKE '%' || #{bookVO.b_name} || '%' "
+						+ " ) IP"
+						+ " WHERE ROWNUM &lt; = ${pageDTO.limit}"
+						+ " ) TBL"
+						+ " WHERE NUM &gt; = #{pageDTO.offset}"
+			+ "</script>";
+	
+	public final static String searchAuthTotal = 
+			"<script>"
+					+ " SELECT * FROM ( " 
+						+ " SELECT /*+ FIRST_ROWS_100 */ROWNUM AS NUM, IP.*FROM "
+						+ " ( SELECT /*+ INDEX_DESC(P) */ * FROM tbl_books B"
+						+ " WHERE b_auther LIKE '%' || #{bookVO.b_auther} || '%' "
+						+ " ) IP"
+						+ " WHERE ROWNUM &lt; = ${pageDTO.limit}"
+						+ " ) TBL"
+						+ " WHERE NUM &gt; = #{pageDTO.offset}"
+			+ "</script>";
 }
 
 			
