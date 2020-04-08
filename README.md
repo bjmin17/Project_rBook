@@ -22,3 +22,5 @@
 * logback 1.2.3
 * Bean Validation API 2.0.1
 * Hibernate validator 6.1.0
+
+* [자세히 보기](./BBsProject-PPT.pdf)
